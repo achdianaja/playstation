@@ -1,14 +1,14 @@
 <?php
-$title = 'Product';
-$page = 'read_product';
+$title = 'booking';
+$page = 'read_booking';
 include '../components/head.php';
 
 ?>
 
-<h1>Product List</h1>
+<h1>booking List</h1>
 
 <div class="container mt-5">
-    <p><a class="btn btn-success btn-sm" href="add_product.php">Add New Product</a></p>
+    <p><a class="btn btn-success btn-sm" href="add_booking.php">Add New Booking</a></p>
     <div class="card">
         <div class="table-wrapper">
             <table class="table">
@@ -37,8 +37,8 @@ include '../components/head.php';
                         <td>jalan jalan</td>
                         <td>0812490234</td>
                         <td>
-                            <a href="#" class="btn btn-warning btn-sm">Edit Product</a> |
-                            <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure Delete this Product?')">Delete Product</a>
+                            <a href="#" class="btn btn-warning btn-sm">Edit booking</a> |
+                            <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure Delete this booking?')">Delete booking</a>
                         </td>
                     </tr>
                 </tbody>

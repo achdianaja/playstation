@@ -4,7 +4,7 @@ include '../components/head.php';
 
 ?>
 
-<h1>Form Add </h1>
+<h1>Form Add</h1>
 
 <div class="container mt-4">
     <div class="card">

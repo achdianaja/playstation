@@ -7,5 +7,8 @@
     <ul class="sidebar-links">
         <li><a href="/Playstation/index.php">Home</a></li>
         <li><a href="/Playstation/product/read_product.php">Product</a></li>
+        <li><a href="/Playstation/user/read_user.php">User</a></li>
+        <li><a href="/Playstation/booking/read_booking.php">Booking</a></li>
+        <li><a href="/Playstation/payment/read_payment.php">Payment</a></li>
     </ul>
 </div>

@@ -15,31 +15,34 @@ include '../components/head.php';
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Gender</th>
-                        <th>Age (month) </th>
-                        <th>Owner</th>
-                        <th>Address</th>
+                        <th>Fullname</th>
+                        <th>Username</th>
+                        <th>Password</th>
                         <th>Phone</th>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+        include "../connection.php";
+        $query = "SELECT * FROM user";
+        $user = mysqli_query($db_connection, $query);
 
-                    <tr>
-                        <td>1</td>
-                        <td>Jhon</td>
-                        <td>Manusia</td>
-                        <td>Laki</td>
-                        <td>10</td>
-                        <td>HJ ule</td>
-                        <td>jalan jalan</td>
-                        <td>0812490234</td>
-                        <td>
-                            <a href="#" class="btn btn-warning btn-sm">Edit user</a> |
-                            <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure Delete this user?')">Delete user</a>
-                        </td>
+        $i=1;
+        foreach ($user as $data) :
+        ?>
+        <tr>
+            <td><?php echo $i++; ?></td>
+            <td><?php echo $data['fullname']; ?></td>
+            <td><?= $data['username']; ?></td>
+            <td><?= $data['password']; ?></td>
+            <td><?= $data['phone']; ?></td>
+            <td><a href="edit_user230018.php?id=<?=$data['user_id']?> ">Edit User</a></td>
+            <td><a href="delete_user230018.php?id=<?=$data['user_id']?>" onclick= "return confirm('Are you sure?')">Delete User</a></td>
+            <td><a href="reset_user230018.php?id=<?=$data['user_id'];?>&username=<?=$data['username'];?>" 
+            onclick= "return confirm('Are you sure?')">Reset Password</a></td>
+        </tr>
+        <?php endforeach; ?>
                     </tr>
                 </tbody>
             </table>

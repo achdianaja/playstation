@@ -15,32 +15,32 @@ include '../components/head.php';
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
+                        <th>Product Name</th>
                         <th>Type</th>
-                        <th>Gender</th>
-                        <th>Age (month) </th>
-                        <th>Owner</th>
-                        <th>Address</th>
-                        <th>Phone</th>
+                        <th>Specification</th>
+                        <th>Price</th>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    include "../connection.php";          
+                    $query = "SELECT * FROM product";       
+                    $user = mysqli_query($db_connection, $query);
 
-                    <tr>
-                        <td>1</td>
-                        <td>Jhon</td>
-                        <td>Manusia</td>
-                        <td>Laki</td>
-                        <td>10</td>
-                        <td>HJ ule</td>
-                        <td>jalan jalan</td>
-                        <td>0812490234</td>
-                        <td>
-                            <a href="#" class="btn btn-warning btn-sm">Edit Product</a> |
-                            <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure Delete this Product?')">Delete Product</a>
-                        </td>
-                    </tr>
+                    $i = 1; 
+                    foreach ($user as $data) :
+                    ?>
+                        <tr>
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $data['product_name']; ?></td>
+                            <td><?= $data['type']; ?></td>
+                            <td><?= $data['specification']; ?></td>
+                            <td><?= $data['price']; ?></td>
+                            <td><a href="edit_product.php?id=<?= $data['product_id'] ?> ">Edit Product</a></td>
+                            <td><a href="delete_product.php?id=<?= $data['product_id'] ?>" onclick="return confirm('Are you sure?')">Delete Product</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

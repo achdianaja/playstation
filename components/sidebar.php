@@ -1,14 +1,35 @@
+<?php
+
+include 'config.php';
+
+$menuItems = [
+    'Dashboard' => ['views/dashboard.php', 'home-alt.svg', 'views/dashboard.php'],
+    'Product' => ['views/product/read_product.php', 'gamepad.svg', 'views/product/'],
+    'User' => ['views/user/read_user.php', 'user.svg', 'views/user'],
+    'Booking' => ['views/booking/read_booking.php', 'booking.svg', 'views/booking/'],
+];
+
+// if ($_SESSION['role'] == 'Manager') {
+//     $menuItems['Users List'] = ['views/users/read_user_230012.php', 'user-list.png', 'views/users/']; 
+// }
+?>
+
 <div class="sidebar active" id="sidebar">
     <div class="navbar-brand">
-        <a href="#" class="logo">Petclinic iKi</a>
-        <img src="/petclinic_modif/public/images/assets/PP.jpeg" alt="" width="50" height="50" style="border-radius: 100%;">
+        <img src="<?= htmlspecialchars($logoPath) ?>" alt="Logo" class="logo">
     </div>
-    <button class="close-btn" onclick="toggleSidebar()"></button>
+    <button class="close-btn" id="close" onclick="toggleSidebar()">✖</button>
     <ul class="sidebar-links">
-        <li><a href="/Playstation/index.php">Home</a></li>
-        <li><a href="/Playstation/product/read_product.php">Product</a></li>
-        <li><a href="/Playstation/user/read_user.php">User</a></li>
-        <li><a href="/Playstation/booking/read_booking.php">Booking</a></li>
-        <li><a href="/Playstation/payment/read_payment.php">Payment</a></li>
+        <?php foreach ($menuItems as $title => [$link, $icon, $subpath]) :
+            $active = (strpos($currentPage, $subpath) !== false) ? 'active' : '';
+        ?>
+            <li>
+                <a href="<?= htmlspecialchars($baseLink . $link) ?>" class="<?= $active ?>">
+                    <?php include $baseLink . 'public/assets/icons/' . $icon ?>
+                    <?= htmlspecialchars($title) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+
     </ul>
 </div>

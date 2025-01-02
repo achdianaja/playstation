@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_POST)) {
-    include "../connection.php"; //call connection php mysql
+    include "../../connection.php"; //call connection php mysql
 
     //sql query INSERT INTO VALUES
     $query = "INSERT INTO product 

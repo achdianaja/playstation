@@ -1,6 +1,7 @@
 <?php
+$page = "User | Form Add";
 
-include '../components/head.php';
+include '../../components/head.php';
 
 ?>
 
@@ -9,7 +10,7 @@ include '../components/head.php';
 <div class="container mt-4">
     <div class="card">
         <div class="card-body">
-            <form action="create_user.php" method="POST">
+            <form action="../../action/user/create_user.php" method="POST">
                 <div class="form-group">
                     <label for="name" class="form-label">Fullname</label>
                     <input type="text" name="fullname" id="name" required class="form-control">
@@ -38,4 +39,4 @@ include '../components/head.php';
         </div>
     </div>
 </div>
-<?php include '../components/footer.php' ?>
+<?php include '../../components/footer.php' ?>

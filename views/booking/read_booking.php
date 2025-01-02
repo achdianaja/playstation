@@ -1,7 +1,7 @@
 <?php
 $title = 'booking';
 $page = 'read_booking';
-include '../components/head.php';
+include '../../components/head.php';
 
 ?>
 
@@ -47,4 +47,4 @@ include '../components/head.php';
     </div>
 </div>
 
-<?php include '../components/footer.php' ?>
+<?php include '../../components/footer.php' ?>

@@ -1,7 +1,7 @@
 <?php
 $title = 'Product';
 $page = 'read_product';
-include '../components/head.php';
+include '../../components/head.php';
 
 ?>
 
@@ -11,7 +11,7 @@ include '../components/head.php';
     <p><a class="btn btn-success btn-sm" href="add_product.php">Add New Product</a></p>
     <div class="card">
         <div class="table-wrapper">
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -19,12 +19,12 @@ include '../components/head.php';
                         <th>Type</th>
                         <th>Specification</th>
                         <th>Price</th>
-                        <th colspan="2">Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    include "../connection.php";          
+                    include "../../connection.php";          
                     $query = "SELECT * FROM product";       
                     $user = mysqli_query($db_connection, $query);
 
@@ -37,8 +37,10 @@ include '../components/head.php';
                             <td><?= $data['type']; ?></td>
                             <td><?= $data['specification']; ?></td>
                             <td><?= $data['price']; ?></td>
-                            <td><a href="edit_product.php?id=<?= $data['product_id'] ?> ">Edit Product</a></td>
-                            <td><a href="delete_product.php?id=<?= $data['product_id'] ?>" onclick="return confirm('Are you sure?')">Delete Product</a></td>
+                            <td>
+                                <a href="edit_product.php?id=<?= $data['product_id'] ?> ">Edit Product</a>
+                                <a href="delete_product.php?id=<?= $data['product_id'] ?>" onclick="return confirm('Are you sure?')">Delete Product</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -47,4 +49,4 @@ include '../components/head.php';
     </div>
 </div>
 
-<?php include '../components/footer.php' ?>
+<?php include '../../components/footer.php' ?>

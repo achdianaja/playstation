@@ -13,7 +13,8 @@
 <body>
     <div class="login-wrap">
         <div class="login-card">
-            <h2>Login</h2>
+            <!-- <h2>Login</h2> -->
+            <img src="../../public/assets/logo-playstation.png" alt="logo" class="logo" width="300" height="auto">
             <form method="POST" action="../../action/auth/login.php">
                 <input type="text" id="name" name="username" placeholder="Username" required>
                 <input type="password" id="pass" name="password" placeholder="Password" required>
@@ -21,7 +22,7 @@
                     <input type="checkbox" name="" id="show" onclick="showPassword()">
                     <label for="show">show</label>
                 </div>
-                <input type="submit" class="btn-login" value="LOGIN" name="login"></input>
+                <input type="submit" class="btn-login" value="LOGIN" name="login">
             </form>
         </div>
     </div>

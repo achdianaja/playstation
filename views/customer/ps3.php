@@ -31,7 +31,6 @@ include '../../components/head-user.php';
                     $i = 1;
                     foreach ($user as $data) :
                         $statusCheck = $data['status'];
-                        echo $statusCheck;
 
                         if ($statusCheck == 'kosong') {
                             $status = 'badge-success';
@@ -56,7 +55,7 @@ include '../../components/head-user.php';
                                 </div>
                             </td>
                             <td>
-                                <a href="edit_product.php?id=<?= $data['product_id'] ?> " class="btn btn-danger">booking</a>
+                                <a href="../booking/add_booking.php?id=<?= $data['product_id'] ?>" class="btn btn-danger">booking</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

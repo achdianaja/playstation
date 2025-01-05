@@ -27,7 +27,7 @@ include '../../components/head.php';
                 </thead>
                 <tbody>
 
-                    <tr>
+                    <!-- <tr>
                         <td>1</td>
                         <td>Jhon</td>
                         <td>Manusia</td>
@@ -40,7 +40,7 @@ include '../../components/head.php';
                             <a href="#" class="btn btn-warning btn-sm">Edit booking</a> |
                             <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure Delete this booking?')">Delete booking</a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>

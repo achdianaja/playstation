@@ -1,6 +1,15 @@
 <?php
+include '../../connection.php';
 
-include '../components/head.php';
+$query = "SELECT * FROM product WHERE product_id='$_GET[id]'";
+
+$product = mysqli_query($db_connection, $query);
+
+$data = mysqli_fetch_assoc($product);
+
+$page = "Form Booking";
+
+include '../../components/head-user.php';
 
 ?>
 
@@ -10,9 +19,20 @@ include '../components/head.php';
     <div class="card">
         <div class="card-body">
             <form action="create_pet.php" method="POST">
+                <?php if (isset($_SESSION['fullname'])) { ?>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" required class="form-control" value="<?= $_SESSION['fullname'] ?>" disabled>
+                    </div>
+                <?php } else { ?>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" required class="form-control">
+                    </div>
+                <?php } ?>
                 <div class="form-group">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="pet_name" id="name" required class="form-control">
+                    <label for="name" class="form-label">Product</label>
+                    <input type="text" name="product_name" id="name" required class="form-control" value="<?= $data['product_name'] ?>" disabled>
                 </div>
 
                 <div class="form-group">
@@ -68,4 +88,4 @@ include '../components/head.php';
         </div>
     </div>
 </div>
-<?php include '../components/footer.php' ?>
+<?php include '../../components/footer-user.php' ?>

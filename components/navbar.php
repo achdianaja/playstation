@@ -4,17 +4,20 @@ include 'config.php';
 $menuItems = [
     'Profile' => ['views/users/user_photo.php'],
     'Logout' => ['action/auth/logout.php'],
-    'Change Password' => ['views/auth/change_password_230012.php'],
+    'Change Password' => ['views/auth/change_password.php'],
 ];
 
-$subpath = 'views/customer/';
-$isCustomerPath = (strpos($currentPage, $subpath) !== false);
+$subpathCustomer = 'views/customer/';
+$isCustomerPath = (strpos($currentPage, $subpathCustomer) !== false);
+$subpathBooking = 'views/booking/';
+$isBookingPath = (strpos($currentPage, $subpasubpathBookingth) !== false);
+
 ?>
 
 <!-- Start Navbar -->
 <nav class="navbar" id="navbar">
 
-    <?php if ($page !== 'Home' && !$isCustomerPath) { ?>
+    <?php if ($page !== 'Home' && !$isCustomerPath && !$isBookingPath) { ?>
         <div>
             <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
         </div>

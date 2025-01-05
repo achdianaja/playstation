@@ -36,7 +36,7 @@ include '../../components/head.php';
                             <td><?php echo $data['product_name']; ?></td>
                             <td><?= $data['type']; ?></td>
                             <td><?= $data['specification']; ?></td>
-                            <td><?= $data['price']; ?></td>
+                            <td><?= number_format($data['hourly_price'], 0, ',', '.') ?></td>
                             <td>
                                 <a href="edit_product.php?id=<?= $data['product_id'] ?> ">Edit Product</a>
                                 <a href="delete_product.php?id=<?= $data['product_id'] ?>" onclick="return confirm('Are you sure?')">Delete Product</a>

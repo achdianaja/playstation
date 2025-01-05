@@ -21,7 +21,6 @@ include '../../components/head.php';
                     <select name="type" id="type" required class="form-select">
                         <option value="" selected disabled>Choose</option>
                         <option value="PS5">PS 5</option>
-                        <option value="PS5Pro">PS 5 Pro</option>
                         <option value="PS4">PS 4</option>
                         <option value="PS3">PS 3</option>
                     </select>
@@ -33,8 +32,8 @@ include '../../components/head.php';
                 </div>
 
                 <div class="form-group">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" name="price" id="price" required class="form-control">
+                    <label for="hourly_price" class="form-label">Hourly Price</label>
+                    <input type="number" name="hourly_price" id="hourly_price" required class="form-control">
                 </div>
 
                 <div class="form-group" style="display:flex; justify-content:flex-end;">

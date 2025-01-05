@@ -17,7 +17,6 @@ include '../../components/head.php';
                         <th>No</th>
                         <th>Fullname</th>
                         <th>Username</th>
-                        <th>Password</th>
                         <th>Phone</th>
                         <th colspan="2">Action</th>
                     </tr>
@@ -25,7 +24,7 @@ include '../../components/head.php';
                 <tbody>
                     <?php
                     include "../../connection.php";
-                    $query = "SELECT * FROM user";
+                    $query = "SELECT * FROM user WHERE role_id = 2";
                     $user = mysqli_query($db_connection, $query);
 
                     $i = 1;
@@ -35,7 +34,6 @@ include '../../components/head.php';
                             <td><?php echo $i++; ?></td>
                             <td><?php echo $data['fullname']; ?></td>
                             <td><?= $data['username']; ?></td>
-                            <td><?= $data['password']; ?></td>
                             <td><?= $data['phone']; ?></td>
                             <td><a href="edit_user230018.php?id=<?= $data['user_id'] ?> ">Edit User</a></td>
                             <td>

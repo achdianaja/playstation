@@ -76,6 +76,41 @@ a {
     text-decoration: none;
 }
 
+/* badge */
+.badge {
+    text-align: center;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    max-width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.badge-success {
+    background-color: var(--btn-success-bg-color);
+    box-shadow: 0 2px 5px rgba(0, 128, 0, 0.3);
+}
+
+
+
+.badge-danger {
+    background-color: var(--btn-danger-bg-color);
+    box-shadow: 0 2px 5px rgba(255, 0, 0, 0.3);
+}
+
+
+
+.badge-warning {
+    background-color: var(--btn-warning-bg-color);
+    box-shadow: 0 2px 5px rgba(255, 165, 0, 0.3);
+}
+
+
+/* end badge */
+
 /* Container Style */
 .container {
     width: 100%;
@@ -296,10 +331,8 @@ a {
 /* Wrapper table */
 .table-wrapper {
     overflow-x: auto;
-    /* Menambahkan scroll horizontal untuk tabel */
     margin-top: 20px;
     -webkit-overflow-scrolling: touch;
-    /* Untuk pengalaman scrolling yang lebih baik di perangkat seluler */
 }
 
 /* Table */
@@ -310,7 +343,6 @@ a {
     color: var(--text-color);
     text-align: left;
     min-width: 600px;
-    /* Memberikan tabel lebar minimum agar kolom tidak terlalu sempit */
 }
 
 .table th,
@@ -318,7 +350,6 @@ a {
     padding: 12px;
     border-bottom: 1px solid #ddd;
     white-space: nowrap;
-    /* Mencegah teks memotong dalam kolom */
 }
 
 .table th {

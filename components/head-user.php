@@ -9,14 +9,12 @@
     $basePath = ($page == "Dashboard") ? "../public/" : (($page != "Home") ? "../../public/" : "public/");
     ?>
     <link rel="stylesheet" href="<?= $basePath ?>css/style.css">
-    <link rel="stylesheet" href="<?= $basePath ?>css/sidebar.css">
 </head>
 
 <body>
     <?php
-    $basePath = ($page == "Dashboard") ? "../components/" : (($page != "Home") ? "../../components/" : "");
+    $navbarPath = ($page != "Home") ? "../../components" : "components";
 
-    include $basePath . 'navbar.php';
-    include $basePath . 'sidebar.php';
+    include $navbarPath . '/navbar.php';
     ?>
-    <main class="content shifted" id="content">
+    <main class="content" id="content">

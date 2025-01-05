@@ -5,15 +5,15 @@ if(isset($_POST)) {
 
     //sql query INSERT INTO VALUES
     $query = "INSERT INTO product 
-    (`product_name`, `type`, `specification`, `price`) 
-    VALUES ('$_POST[product_name]', '$_POST[type]', '$_POST[specification]', '$_POST[price]')";
+    (`product_name`, `type`, `specification`, `hourly_price`) 
+    VALUES ('$_POST[product_name]', '$_POST[type]', '$_POST[specification]', '$_POST[hourly_price]')";
 
     //run query
     $create = mysqli_query($db_connection, $query);
 
     if($create) { 
         //echo "<p>Added succeefully!</p>"; //msg html ver
-        echo "<script> alert('ADDED SUCCESSFULLY!!')</script>";
+        echo "<script>alert('Added Successfuly !');window.location.replace('../../views/dashboard.php')</script>";
     } else {
         //echo "<p>Add pet failed!</p>";
         echo "<script> alert('ADDED FAILED!')</script>"; //msg js ver

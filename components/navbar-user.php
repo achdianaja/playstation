@@ -6,14 +6,14 @@ $menuItems = [
     'Logout' => ['action/auth/logout.php'],
     'Change Password' => ['views/auth/change_password.php'],
 ];
+
 ?>
 
 <!-- Start Navbar -->
 <nav class="navbar" id="navbar">
 
-
-    <div>
-        <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <div class="navbar-brand">
+        <img src="<?php echo $baseLink; ?>public/assets/logo-playstation.png" alt="Logo" class="logo">
     </div>
 
     <?php if (empty($_SESSION['photo_user']) && empty($_SESSION['fullname'])) { ?>

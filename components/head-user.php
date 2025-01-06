@@ -15,6 +15,6 @@
     <?php
     $navbarPath = ($page != "Home") ? "../../components" : "components";
 
-    include $navbarPath . '/navbar.php';
+    include $navbarPath . '/navbar-user.php';
     ?>
     <main class="content" id="content">

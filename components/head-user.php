@@ -9,6 +9,7 @@
     $basePath = ($page == "Dashboard") ? "../public/" : (($page != "Home") ? "../../public/" : "public/");
     ?>
     <link rel="stylesheet" href="<?= $basePath ?>css/style.css">
+    <!-- <link rel="stylesheet" href="<?= $basePath ?>css/navbar.css"> -->
 </head>
 
 <body>

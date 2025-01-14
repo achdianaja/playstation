@@ -1,7 +1,7 @@
 <?php
 $title = 'Product';
 $page = 'read_product';
-include '../../components/head.php';
+include '../../components/head-user.php';
 ?>
 
 <div class="container mt-5">
@@ -28,32 +28,37 @@ include '../../components/head.php';
                     include "../../connection.php";
 
 
-                    $query = "SELECT booking.*, booking.status AS booking_status, product.*
-                              FROM booking 
-                              JOIN product ON product.product_id = booking.product_id";
+                    $query = "SELECT booking.*, 
+                                booking.status AS booking_status, 
+                                order_product.status AS order_status,
+                                product.*
+                            FROM booking 
+                            JOIN product ON product.product_id = booking.product_id 
+                            LEFT JOIN order_product ON order_product.booking_id = booking.booking_id
+                            WHERE booking.user_id = '$_SESSION[userid]'";
+
+
 
                     $products = mysqli_query($db_connection, $query);
 
                     $i = 1;
 
                     foreach ($products as $data) {
-                        $statusValue = $data['booking_status'];
-                        if ($statusValue === 'pending') {
+                        $statusValue = $data['order_status'];
+                        if ($statusValue === 'on') {
                             $status = 'badge-warning';
-                            $text = 'Pending';
-                        } elseif ($statusValue === 'confirmed') {
-                            $status = 'badge-danger';
-                            $text = 'Di Booking';
+                            $text = 'on';
                         } else {
-                            $status = 'badge-success';
-                            $text = 'Kosong';
-                        }
+                            $status = 'badge-danger';
+                            $text = 'off';
+                        } 
                     ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
                             <td><?php echo $data['product_name']; ?></td>
                             <td><?= $data['type']; ?></td>
                             <td><?= date('H:i', strtotime($data['start_rent'])) . ' - ' . date('H:i', strtotime($data['end_rent'])); ?></td>
+                            <!-- <td><?= $data['rent_duration']; ?></td> -->
                             <td><?= number_format($data['total_price'], 0, ',', '.') ?></td>
                             <td>
                                 <div class="badge <?php echo $status; ?>">
@@ -82,4 +87,4 @@ include '../../components/head.php';
     </div>
 </div>
 
-<?php include '../../components/footer.php'; ?>
+<?php include '../../components/footer-user.php'; ?>

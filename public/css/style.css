@@ -375,16 +375,13 @@ a {
     .table {
         font-size: 14px;
         min-width: unset;
-        /* Menghapus batasan lebar minimum di perangkat kecil */
     }
 
     .table th,
     .table td {
         padding: 10px;
         white-space: normal;
-        /* Membiarkan teks melipat jika terlalu panjang */
         word-wrap: break-word;
-        /* Membagi kata jika teks sangat panjang */
     }
 }
 

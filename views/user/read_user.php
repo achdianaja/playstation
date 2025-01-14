@@ -4,7 +4,6 @@ $page = 'read_user';
 include '../../components/head.php';
 
 ?>
-
 <h1>user List</h1>
 
 <div class="container mt-5">
@@ -15,10 +14,11 @@ include '../../components/head.php';
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Image</th>
                         <th>Fullname</th>
                         <th>Username</th>
                         <th>Phone</th>
-                        <th colspan="2">Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,15 +32,11 @@ include '../../components/head.php';
                     ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
+                            <td><img src="/playstation/public/assets/images/user/<?= $data['user_photo']; ?>" alt="User Photo" width="50" height="auto" style="border-radius: 100%;"></td>
                             <td><?php echo $data['fullname']; ?></td>
                             <td><?= $data['username']; ?></td>
                             <td><?= $data['phone']; ?></td>
-                            <td><a href="edit_user230018.php?id=<?= $data['user_id'] ?> ">Edit User</a></td>
-                            <td>
-                                <a href="delete_user230018.php?id=<?= $data['user_id'] ?>" onclick="return confirm('Are you sure?')">Delete User</a>
-                                <a href="reset_user230018.php?id=<?= $data['user_id']; ?>&username=<?= $data['username']; ?>"
-                                    onclick="return confirm('Are you sure?')">Reset Password</a>
-                            </td>
+                            <td><a href="delete_user.php?id=<?= $data['user_id'] ?>" class="btn btn-outline-info" onclick="return confirm('Are you sure?')">Delete User</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tr>

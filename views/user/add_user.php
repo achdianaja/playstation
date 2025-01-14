@@ -22,11 +22,6 @@ include '../../components/head.php';
                 </div>
                 
                 <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="text" name="password" id="pass" required class="form-control">
-                </div>
-
-                <div class="form-group">
                     <label for="phone" class="form-label">Phone</label>
                     <input type="number" name="phone" id="phone" required class="form-control">
                 </div>

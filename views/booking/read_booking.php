@@ -18,8 +18,6 @@ include '../../components/head.php';
                         <th>Name</th>
                         <th>Type</th>
                         <th>Gender</th>
-                        <th>Age (month) </th>
-                        <th>Owner</th>
                         <th>Address</th>
                         <th>Phone</th>
                         <th colspan="2">Action</th>

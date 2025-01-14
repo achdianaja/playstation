@@ -7,7 +7,8 @@ include '../../components/head-user.php';
 
 
 <div class="container mt-5">
-    <h1>List Ps 3</h1>
+    <h1><a href="../../index.php" class="btn btn-outline-info btn-sm mr-3"> <— </a>List Ps 3</h1>
+
     <div class="card">
         <div class="table-wrapper">
             <table class="table table-striped">

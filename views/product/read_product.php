@@ -4,7 +4,6 @@ $page = 'read_product';
 include '../../components/head.php';
 
 ?>
-
 <h1>Product List</h1>
 
 <div class="container mt-5">
@@ -38,8 +37,8 @@ include '../../components/head.php';
                             <td><?= $data['specification']; ?></td>
                             <td><?= number_format($data['hourly_price'], 0, ',', '.') ?></td>
                             <td>
-                                <a href="edit_product.php?id=<?= $data['product_id'] ?> ">Edit Product</a>
-                                <a href="delete_product.php?id=<?= $data['product_id'] ?>" onclick="return confirm('Are you sure?')">Delete Product</a>
+                                <a href="edit_product.php?id=<?= $data['product_id'] ?> " class="btn btn-success">Edit Product</a>
+                                <a href="delete_product.php?id=<?= $data['product_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete Product</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

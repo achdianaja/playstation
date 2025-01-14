@@ -439,6 +439,7 @@ a {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+
 .btn img {
     vertical-align: middle;
     width: 20px;
@@ -500,6 +501,20 @@ a {
 .btn-secondary:hover {
     background-color: var(--btn-secondary-hover-bg-color);
     border-color: var(--btn-secondary-hover-bg-color);
+}
+
+.btn-outline-info {
+    color: #0dcaf0 ;
+    background-color: transparent;
+    border: 1px solid #0dcaf0;
+    transition: color 0.15s ease-in-out, backgroud-color 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-outline-info:hover {
+    color: var(--text-color-black);
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+
 }
 
 .btn-sm {

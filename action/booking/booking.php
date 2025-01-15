@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               VALUES ('$user_id', '$product_id', '$start_rent', '$end_rent', '$total_price', 'pending')";
     
     if (mysqli_query($db_connection, $query)) {
+        $update_query = "UPDATE product SET status = 'booked' WHERE product_id = '$product_id'";
+        mysqli_query($db_connection, $update_query);
         echo "Booking berhasil disimpan!";
     } else {
         echo "Error: " . mysqli_error($db_connection);

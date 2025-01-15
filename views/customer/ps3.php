@@ -33,25 +33,22 @@ include '../../components/head-user.php';
                     $i = 1;
 
                     foreach ($products as $data) {
-                        $statusQuery = "SELECT status FROM booking WHERE product_id = '$data[product_id]' ORDER BY created_at DESC LIMIT 1";
-                        $statusResult = mysqli_query($db_connection, $statusQuery);
-                        $statusRow = mysqli_fetch_assoc($statusResult);
 
-                        if ($statusRow) {
-                            $statusValue = $statusRow['status'];
-                            if ($statusValue === 'pending') {
-                                $status = 'badge-warning';
-                                $text = 'Pending';
-                            } elseif ($statusValue === 'confirmed') {
-                                $status = 'badge-danger';
-                                $text = 'Di Booking';
-                            } elseif ($statusValue === 'canceled') {
-                                $status = 'badge-success';
-                                $text = 'Kosong';
-                            }
-                        } else {
+
+                        $statusValue = $data['status'];
+
+                        if ($statusValue === 'availabel') {
                             $status = 'badge-success';
-                            $text = 'Kosong';
+                            $btn = "btn-primary";
+                            $text = 'AVAILABLE';
+                        } elseif ($statusValue === 'rented') {
+                            $status = 'badge-danger';
+                            $btn = "btn-danger btn-disabled";
+                            $text = 'RENTED';
+                        } elseif ($statusValue === 'booked') {
+                            $status = 'badge-warning';
+                            $btn = "btn-warning";
+                            $text = 'BOOKED';
                         }
                     ?>
                         <tr>
@@ -66,7 +63,7 @@ include '../../components/head-user.php';
                                 </div>
                             </td>
                             <td>
-                                <a href="../booking/add_booking.php?id=<?= $data['product_id'] ?>" class="btn btn-danger">Booking</a>
+                                <a href="../booking/add_booking.php?id=<?= $data['product_id'] ?>" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
                             </td>
                         </tr>
                     <?php

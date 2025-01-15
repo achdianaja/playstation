@@ -501,7 +501,7 @@ a {
 }
 
 .btn-outline-info {
-    color: #0dcaf0 ;
+    color: #0dcaf0;
     background-color: transparent;
     border: 1px solid #0dcaf0;
     transition: color 0.15s ease-in-out, backgroud-color 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -789,6 +789,19 @@ input:disabled {
     background-color: #e9ecef;
     opacity: 1;
 }
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.btn-disabled{
+    /* background-color: #d7d9db6b; */
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+}
+
 
 /* End Form input */
 

@@ -42,9 +42,12 @@ include '../../components/head.php';
                             $status = 'badge-warning';
                             $text = 'Pending';
                         } elseif ($statusValue === 'confirmed') {
+                            $status = 'badge-success';
+                            $text = 'Booked';
+                        } elseif ($statusValue === 'rented') {
                             $status = 'badge-danger';
-                            $text = 'Di Booking';
-                        } else {
+                            $text = 'Rented';
+                        }else {
                             $status = 'badge-success';
                             $text = 'Kosong';
                         }
@@ -60,17 +63,18 @@ include '../../components/head.php';
                                     <?php echo $text; ?>
                                 </div>
                             </td>
+
+                            <?php if($data['status'] != 'pending' ){ ?>
                             <td>
-                                <form action="../../action/booking/process_confirm.php" method="POST" style="display:inline;">
+                                <form action="../../action/booking/approve.php" method="POST" style="display:inline;">
                                     <input type="hidden" name="booking_id" value="<?php echo $data['booking_id']; ?>">
                                     <input type="hidden" name="user_id" value="<?php echo $data['user_id']; ?>">
                                     <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
-                                    <input type="hidden" name="start_rent" value="<?php echo $data['start_rent']; ?>">
-                                    <input type="hidden" name="end_rent" value="<?php echo $data['end_rent']; ?>">
                                     <button type="submit" class="btn btn-success btn-sm">Confirm</button>
                                 </form>
                                 <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-danger btn-sm">Cancel</a>
                             </td>
+                            <?php } ?>
                         </tr>
                     <?php
                     }

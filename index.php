@@ -2,28 +2,11 @@
 $page = 'Home';
 
 include 'components/head-user.php';
-include 'connection.php'; // Koneksi ke database
+include 'connection.php';
 
-// Format tanggal hari ini
 $today = date('Y-m-d');
-
-// Query untuk mendapatkan data booking hari ini
-$query = "SELECT * FROM booking WHERE DATE(start_rent) = '$today'";
-$result = $db_connection->query($query);
-
-// Inisialisasi array untuk menyimpan data jadwal berdasarkan hari dan produk
-$jadwal = [
-    'Senin' => ['ps3' => '-', 'ps4' => '-', 'ps5' => '-'],
-    'Selasa' => ['ps3' => '-', 'ps4' => '-', 'ps5' => '-'],
-    'Rabu' => ['ps3' => '-', 'ps4' => '-', 'ps5' => '-'],
-    'Kamis' => ['ps3' => '-', 'ps4' => '-', 'ps5' => '-'],
-    'Jumat' => ['ps3' => '-', 'ps4' => '-', 'ps5' => '-'],
-    'Sabtu' => ['ps3' => '-', 'ps4' => '-', 'ps5' => '-'],
-    'Minggu' => ['ps3' => '-', 'ps4' => '-', 'ps5' => '-'],
-];
-
-// Mapping hari dalam bahasa Inggris ke Indonesia
-$hariMap = [
+$currentDay = date('l');
+$currentDayTranslated = [
     'Monday' => 'Senin',
     'Tuesday' => 'Selasa',
     'Wednesday' => 'Rabu',
@@ -31,22 +14,32 @@ $hariMap = [
     'Friday' => 'Jumat',
     'Saturday' => 'Sabtu',
     'Sunday' => 'Minggu'
+][$currentDay];
+
+$query = "SELECT booking.*, booking.status AS booking_status, order_product.status AS order_status, product.*
+          FROM booking 
+          JOIN product ON product.product_id = booking.product_id 
+          LEFT JOIN order_product ON order_product.booking_id = booking.booking_id
+          WHERE DATE(start_rent) = '$today' AND booking.status = 'rented'";
+
+
+$result = $db_connection->query($query);
+
+$jadwalHariIni = [
+    'ps3' => [],
+    'ps4' => [],
+    'ps5' => [],
 ];
 
-// Proses data booking
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $hari = $hariMap[date('l', strtotime($row['start_rent']))]; // Konversi hari
-        $product = 'ps' . $row['product_id']; // Asumsikan product_id adalah angka (3 = PS3, 4 = PS4, dst.)
-        
-        if (isset($jadwal[$hari][$product])) {
-            $jadwal[$hari][$product] = $row['user_id']; // Contoh: tampilkan user_id
-        }
+foreach ($result as $data) {
+    $productType = strtolower($data['type']);
+    if (isset($jadwalHariIni[$productType])) {
+        $jadwalHariIni[$productType][] = date('H:i', strtotime($data['start_rent'])) . ' - ' . date('H:i', strtotime($data['end_rent']));
     }
 }
 ?>
 
-<h1 class="mt-3">Jadwal Hari ini</h1>
+<h1 class="mt-3">Jadwal Hari Ini (<?php echo $currentDayTranslated; ?>)</h1>
 <div class="card">
     <div class="card-body">
         <div class="table-wrapper">
@@ -60,14 +53,24 @@ if ($result->num_rows > 0) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($jadwal as $hari => $data): ?>
-                        <tr>
-                            <td><?php echo $hari; ?></td>
-                            <td><?php echo $data['ps3']; ?></td>
-                            <td><?php echo $data['ps4']; ?></td>
-                            <td><?php echo $data['ps5']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
+                    <tr>
+                        <td><?php echo $currentDayTranslated; ?></td>
+                        <td>
+                            <?php
+                            echo empty($jadwalHariIni['ps3']) ? '-' : implode('<br>', $jadwalHariIni['ps3']);
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            echo empty($jadwalHariIni['ps4']) ? '-' : implode('<br>', $jadwalHariIni['ps4']);
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            echo empty($jadwalHariIni['ps5']) ? '-' : implode('<br>', $jadwalHariIni['ps5']);
+                            ?>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -97,7 +100,7 @@ if ($result->num_rows > 0) {
         <div class="card" style="background-color: #32B669;">
             <div class="card-body">
                 <img src="public/assets/images/ps5.png" alt="" class="card-img">
-                <h1><?php echo "100" ?></h1>
+                <h1><?php echo "100"; ?></h1>
                 <a href="views/customer/ps5.php" class="btn btn-primary">Lihat</a>
             </div>
         </div>

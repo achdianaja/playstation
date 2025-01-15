@@ -1,12 +1,12 @@
 <?php
-$title = 'Product';
-$page = 'read_product';
+$title = '';
+$page = 'My Product';
 include '../../components/head-user.php';
 ?>
 
 <div class="container mt-5">
     <h1>
-        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List Ps 3
+        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> <?= $page ?>
     </h1>
 
     <div class="card">
@@ -51,7 +51,7 @@ include '../../components/head-user.php';
                         } else {
                             $status = 'badge-danger';
                             $text = 'off';
-                        } 
+                        }
                     ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
@@ -74,7 +74,9 @@ include '../../components/head-user.php';
                                     <input type="hidden" name="end_rent" value="<?php echo $data['end_rent']; ?>">
                                     <button type="submit" class="btn btn-success btn-sm">Confirm</button>
                                 </form>
-                                <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-danger btn-sm">Cancel</a>
+                                <?php if ($data['order_status'] != 'on') { ?>
+                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-danger btn-sm">Cancel</a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php

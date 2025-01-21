@@ -15,13 +15,15 @@
     --btn-success-bg-color: #198754;
     --btn-success-hover-bg-color: #157347;
     --btn-warning-bg-color: #ffc107;
+    --btn-info-bg-color: #0dcaf0;;
+    --btn-info-hover-bg-color: #31d2f2;;
     --btn-warning-hover-bg-color: #ffca2c;
     --btn-secondary-bg-color: #6c757d;
     --btn-secondary-hover-bg-color: #5a6268;
     --card-bg-color: #fff;
     --table-bg-color: #f1f1f1;
     --table-hover-bg-color: #f1f1f1;
-    --text-color-black: #333;
+    --text-color-black: #000;
     --text-color-white: #fff;
     --shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -105,6 +107,11 @@ a {
 
 .badge-warning {
     background-color: var(--btn-warning-bg-color);
+    box-shadow: 0 2px 5px rgba(255, 165, 0, 0.3);
+}
+
+.badge-info {
+    background-color: var(--btn-info-bg-color);
     box-shadow: 0 2px 5px rgba(255, 165, 0, 0.3);
 }
 
@@ -454,6 +461,17 @@ a {
 .btn-primary:hover {
     background-color: var(--btn-primary-hover-bg-color);
     border-color: var(--btn-primary-hover-bg-color);
+}
+
+.btn-info {
+    color: var(--text-color-black);
+    background-color: var(--btn-info-bg-color);
+    border-color: var(--btn-info-bg-color);
+}
+
+.btn-info:hover {
+    background-color: var(--btn-info-hover-bg-color);
+    border-color: var(--btn-info-hover-bg-color);
 }
 
 .btn-danger {

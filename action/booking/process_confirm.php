@@ -43,10 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error: " . mysqli_error($db_connection));
     } else {
         $update_booking = "UPDATE booking SET status = 'confirmed' WHERE booking_id = '$booking_id'";
-        $update_order = "UPDATE order_product SET status = 'on' WHERE booking_id = '$booking_id'";
+        $update_order = "UPDATE order_product SET status = 'waiting' WHERE booking_id = '$booking_id'";
         mysqli_query($db_connection, $update_booking);
         mysqli_query($db_connection, $update_order);
-        echo "berhasil di konfirmasi";
+        echo "<script>alert('Added Successfuly !');window.location.replace('../../views/customer/mybooking.php')</script>";
     }
 
 

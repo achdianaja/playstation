@@ -14,17 +14,18 @@ if (isset($_POST['login'])) {
             $_SESSION['userid'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['password'] = $user['password'];
-            $_SESSION['fullname'] = $user['fullname'];
+            $_SESSION['name'] = $user['name'];
             $_SESSION['user_photo'] = $user['user_photo'];
+            $_SESSION['role'] = $user['role_id'];
             if ($user['role_id'] == 1) {
                 echo "<script>alert('Login Success !');window.location.replace('../../views/dashboard.php')</script>";
             } else {
                 echo "<script>alert('Login Success !');window.location.replace('../../index.php')</script>";
             }
         } else {
-            echo "<script>alert('Login Failed, Wrong Password !');window.location.replace('form_login_230012.php')</script>";
+            echo "<script>alert('Login Failed, Wrong Password !');window.location.replace('../../auth/form_login.php')</script>";
         }
     } else {
-        echo "<script>alert('Login Failed, User not found !');window.location.replace('form_login_230012.php')</script>";
+        echo "<script>alert('Login Failed, User not found !');window.location.replace('f../../auth/form_login.php')</script>";
     }
 }

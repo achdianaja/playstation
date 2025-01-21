@@ -14,8 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($approve) {
         $update_booking = "UPDATE booking SET status = 'rented' WHERE booking_id = '$booking_id'";
         mysqli_query($db_connection, $update_booking);
-
-        echo "berhasil";
+        $update_order = "UPDATE order_product SET status = 'paid' WHERE booking_id = '$booking_id'";
+        mysqli_query($db_connection, $update_order);
+        echo "<script>alert('Added Successfuly !');window.location.replace('../../views/booking/read_booking.php')</script>";
     } else {
         echo "gagal";
     }

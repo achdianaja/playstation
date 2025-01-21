@@ -16,21 +16,23 @@ $currentDayTranslated = [
     'Sunday' => 'Minggu'
 ][$currentDay];
 
+// Query untuk mendapatkan semua data jadwal berdasarkan hari ini dengan status 'rented'
 $query = "SELECT booking.*, booking.status AS booking_status, order_product.status AS order_status, product.*
           FROM booking 
           JOIN product ON product.product_id = booking.product_id 
           LEFT JOIN order_product ON order_product.booking_id = booking.booking_id
           WHERE DATE(start_rent) = '$today' AND booking.status = 'rented'";
 
-
 $result = $db_connection->query($query);
 
+// Array untuk menyimpan data jadwal berdasarkan jenis perangkat
 $jadwalHariIni = [
     'ps3' => [],
     'ps4' => [],
     'ps5' => [],
 ];
 
+// Mengelompokkan jadwal berdasarkan jenis perangkat
 foreach ($result as $data) {
     $productType = strtolower($data['type']);
     if (isset($jadwalHariIni[$productType])) {
@@ -57,16 +59,19 @@ foreach ($result as $data) {
                         <td><?php echo $currentDayTranslated; ?></td>
                         <td>
                             <?php
+                            // Menampilkan semua jadwal PS3
                             echo empty($jadwalHariIni['ps3']) ? '-' : implode('<br>', $jadwalHariIni['ps3']);
                             ?>
                         </td>
                         <td>
                             <?php
+                            // Menampilkan semua jadwal PS4
                             echo empty($jadwalHariIni['ps4']) ? '-' : implode('<br>', $jadwalHariIni['ps4']);
                             ?>
                         </td>
                         <td>
                             <?php
+                            // Menampilkan semua jadwal PS5
                             echo empty($jadwalHariIni['ps5']) ? '-' : implode('<br>', $jadwalHariIni['ps5']);
                             ?>
                         </td>
@@ -82,7 +87,7 @@ foreach ($result as $data) {
         <div class="card" style="background-color: #1C7ABF;">
             <div class="card-body">
                 <img src="public/assets/images/ps3.png" alt="" class="card-img">
-                <h1><?php echo "100"; ?></h1>
+                <h1><?php echo count($jadwalHariIni['ps3']); ?></h1>
                 <a href="views/customer/ps3.php" class="btn btn-primary">Lihat</a>
             </div>
         </div>
@@ -91,7 +96,7 @@ foreach ($result as $data) {
         <div class="card" style="background-color: #ED0984;">
             <div class="card-body">
                 <img src="public/assets/images/ps4.png" alt="" class="card-img">
-                <h1><?php echo "100"; ?></h1>
+                <h1><?php echo count($jadwalHariIni['ps4']); ?></h1>
                 <a href="views/customer/ps4.php" class="btn btn-primary">Lihat</a>
             </div>
         </div>
@@ -100,7 +105,7 @@ foreach ($result as $data) {
         <div class="card" style="background-color: #32B669;">
             <div class="card-body">
                 <img src="public/assets/images/ps5.png" alt="" class="card-img">
-                <h1><?php echo "100"; ?></h1>
+                <h1><?php echo count($jadwalHariIni['ps5']); ?></h1>
                 <a href="views/customer/ps5.php" class="btn btn-primary">Lihat</a>
             </div>
         </div>

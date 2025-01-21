@@ -45,12 +45,15 @@ include '../../components/head-user.php';
 
                     foreach ($products as $data) {
                         $statusValue = $data['order_status'];
-                        if ($statusValue === 'on') {
+                        if ($statusValue === 'paid') {
+                            $status = 'badge-info';
+                            $text = 'paid';
+                        } elseif('waiting'){ 
                             $status = 'badge-warning';
-                            $text = 'on';
+                            $text = 'waiting';
                         } else {
                             $status = 'badge-danger';
-                            $text = 'off';
+                            $text = 'unpaid';
                         }
                     ?>
                         <tr>
@@ -66,17 +69,8 @@ include '../../components/head-user.php';
                                 </div>
                             </td>
                             <td>
-                                <form action="../../action/booking/process_confirm.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="booking_id" value="<?php echo $data['booking_id']; ?>">
-                                    <input type="hidden" name="user_id" value="<?php echo $data['user_id']; ?>">
-                                    <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
-                                    <input type="hidden" name="start_rent" value="<?php echo $data['start_rent']; ?>">
-                                    <input type="hidden" name="end_rent" value="<?php echo $data['end_rent']; ?>">
-                                    <button type="submit" class="btn btn-success btn-sm">Confirm</button>
-                                </form>
-                                <?php if ($data['order_status'] != 'on') { ?>
-                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-danger btn-sm">Cancel</a>
-                                <?php } ?>
+                                <a href="../payment/read_payment.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-success btn-sm">Paid</a>
+                                <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
                             </td>
                         </tr>
                     <?php

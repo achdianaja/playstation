@@ -7,6 +7,7 @@ $menuItems = [
     'Product' => ['views/product/read_product.php', 'gamepad.svg', 'views/product/'],
     'User' => ['views/user/read_user.php', 'user.svg', 'views/user'],
     'Booking' => ['views/booking/read_booking.php', 'booking.svg', 'views/booking/'],
+    'Report' => ['views/report/report.php', 'report.svg', 'views/report/'],
 ];
 
 // if ($_SESSION['role'] == 'Manager') {

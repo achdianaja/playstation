@@ -28,28 +28,29 @@ include '../../components/head.php';
                     include "../../connection.php";
 
 
-                    $query = "SELECT booking.*, booking.status AS booking_status, product.*
+                    $query = "SELECT booking.*, 
+                                     order_product.status AS order_status, 
+                                     booking.status AS booking_status, 
+                                     product.*
                               FROM booking 
-                              JOIN product ON product.product_id = booking.product_id";
+                              JOIN product ON product.product_id = booking.product_id
+                              LEFT JOIN order_product ON order_product.booking_id = booking.booking_id";
 
                     $products = mysqli_query($db_connection, $query);
 
                     $i = 1;
 
                     foreach ($products as $data) {
-                        $statusValue = $data['booking_status'];
-                        if ($statusValue === 'pending') {
+                        $statusValue = $data['order_status'];
+                        if ($statusValue === 'paid') {
+                            $status = 'badge-info';
+                            $text = 'paid';
+                        } elseif('waiting'){ 
                             $status = 'badge-warning';
-                            $text = 'Pending';
-                        } elseif ($statusValue === 'confirmed') {
-                            $status = 'badge-success';
-                            $text = 'Booked';
-                        } elseif ($statusValue === 'rented') {
+                            $text = 'waiting';
+                        } else {
                             $status = 'badge-danger';
-                            $text = 'Rented';
-                        }else {
-                            $status = 'badge-success';
-                            $text = 'Kosong';
+                            $text = 'unpaid';
                         }
                     ?>
                         <tr>
@@ -72,7 +73,7 @@ include '../../components/head.php';
                                     <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
                                     <button type="submit" class="btn btn-success btn-sm">Confirm</button>
                                 </form>
-                                <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-danger btn-sm">Cancel</a>
+                                <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
                             </td>
                             <?php } ?>
                         </tr>

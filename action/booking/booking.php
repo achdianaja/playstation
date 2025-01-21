@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysqli_query($db_connection, $query)) {
         $update_query = "UPDATE product SET status = 'booked' WHERE product_id = '$product_id'";
         mysqli_query($db_connection, $update_query);
-        echo "Booking berhasil disimpan!";
+        echo "<script>alert('Added Successfuly !');window.location.replace('../../views/customer/mybooking.php')</script>";
     } else {
         echo "Error: " . mysqli_error($db_connection);
     }

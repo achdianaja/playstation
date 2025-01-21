@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $approve = mysqli_query($db_connection, $update_status_booking);
 
     if ($approve) {
-        $update_booking = "UPDATE booking SET status = 'rented' WHERE booking_id = '$booking_id'";
+        $update_booking = "UPDATE booking SET status = 'starting' WHERE booking_id = '$booking_id'";
         mysqli_query($db_connection, $update_booking);
         $update_order = "UPDATE order_product SET status = 'paid' WHERE booking_id = '$booking_id'";
         mysqli_query($db_connection, $update_order);

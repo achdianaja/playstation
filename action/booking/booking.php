@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // die();
 
     $query = "INSERT INTO booking (user_id, product_id, start_rent, end_rent, total_price, status) 
-              VALUES ('$user_id', '$product_id', '$start_rent', '$end_rent', '$total_price', 'pending')";
+              VALUES ('$user_id', '$product_id', '$start_rent', '$end_rent', '$total_price', 'in_queue')";
     
     if (mysqli_query($db_connection, $query)) {
         $update_query = "UPDATE product SET status = 'booked' WHERE product_id = '$product_id'";

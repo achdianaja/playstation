@@ -6,7 +6,7 @@ include '../../components/head.php';
 
 <div class="container mt-5">
     <h1>
-        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List Ps 3
+        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List Booking
     </h1>
 
     <div class="card">
@@ -15,6 +15,8 @@ include '../../components/head.php';
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Renter</th>
+                        <th>Phone Number</th>
                         <th>Product Name</th>
                         <th>Type</th>
                         <th>Rental Duration</th>
@@ -31,10 +33,12 @@ include '../../components/head.php';
                     $query = "SELECT booking.*, 
                                      order_product.status AS order_status, 
                                      booking.status AS booking_status, 
-                                     product.*
+                                     product.*,
+                                     user.*
                               FROM booking 
                               JOIN product ON product.product_id = booking.product_id
-                              LEFT JOIN order_product ON order_product.booking_id = booking.booking_id";
+                              LEFT JOIN order_product ON order_product.booking_id = booking.booking_id
+                              JOIN user ON user.user_id = booking.user_id";
 
                     $products = mysqli_query($db_connection, $query);
 
@@ -45,7 +49,7 @@ include '../../components/head.php';
                         if ($statusValue === 'paid') {
                             $status = 'badge-info';
                             $text = 'paid';
-                        } elseif('waiting'){ 
+                        } elseif ('waiting') {
                             $status = 'badge-warning';
                             $text = 'waiting';
                         } else {
@@ -55,6 +59,8 @@ include '../../components/head.php';
                     ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
+                            <td><?php echo $data['name']; ?></td>
+                            <td><?php echo $data['phone']; ?></td>
                             <td><?php echo $data['product_name']; ?></td>
                             <td><?= $data['type']; ?></td>
                             <td><?= date('H:i', strtotime($data['start_rent'])) . ' - ' . date('H:i', strtotime($data['end_rent'])); ?></td>
@@ -65,16 +71,20 @@ include '../../components/head.php';
                                 </div>
                             </td>
 
-                            <?php if($data['status'] != 'pending' ){ ?>
-                            <td>
-                                <form action="../../action/booking/approve.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="booking_id" value="<?php echo $data['booking_id']; ?>">
-                                    <input type="hidden" name="user_id" value="<?php echo $data['user_id']; ?>">
-                                    <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
-                                    <button type="submit" class="btn btn-success btn-sm">Confirm</button>
-                                </form>
-                                <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
-                            </td>
+                            <?php if ($data['order_status'] != 'paid') { ?>
+                                <td>
+                                    <form action="../../action/booking/approve.php" method="POST" style="display:inline;">
+                                        <input type="hidden" name="booking_id" value="<?php echo $data['booking_id']; ?>">
+                                        <input type="hidden" name="user_id" value="<?php echo $data['user_id']; ?>">
+                                        <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
+                                        <button type="submit" class="btn btn-success btn-sm">Confirm</button>
+                                    </form>
+                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
+                                </td>
+                            <?php } else { ?>
+                                <td>
+                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Stop</a>
+                                </td>
                             <?php } ?>
                         </tr>
                     <?php

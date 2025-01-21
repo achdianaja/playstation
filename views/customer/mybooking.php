@@ -31,6 +31,7 @@ include '../../components/head-user.php';
                     $query = "SELECT booking.*, 
                                 booking.status AS booking_status, 
                                 order_product.status AS order_status,
+                                order_product.rent_duration,
                                 product.*
                             FROM booking 
                             JOIN product ON product.product_id = booking.product_id 
@@ -60,8 +61,8 @@ include '../../components/head-user.php';
                             <td><?php echo $i++; ?></td>
                             <td><?php echo $data['product_name']; ?></td>
                             <td><?= $data['type']; ?></td>
-                            <td><?= date('H:i', strtotime($data['start_rent'])) . ' - ' . date('H:i', strtotime($data['end_rent'])); ?></td>
-                            <!-- <td><?= $data['rent_duration']; ?></td> -->
+                            <td><?= date('H:i', strtotime($data['start_rent'])) . ' - ' . date('H:i', strtotime($data['end_rent'])); ?> <div class="badge badge-info">Starting</div></td>
+                            <td><?= $data['rent_duration']; ?></td>
                             <td><?= number_format($data['total_price'], 0, ',', '.') ?></td>
                             <td>
                                 <div class="badge <?php echo $status; ?>">
@@ -69,7 +70,9 @@ include '../../components/head-user.php';
                                 </div>
                             </td>
                             <td>
-                                <a href="../payment/read_payment.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-success btn-sm">Paid</a>
+                                <?php if ($data['order_status'] !== 'paid') { ?>
+                                    <a href="../payment/read_payment.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-success btn-sm">Paid</a>
+                                <?php } ?>
                                 <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
                             </td>
                         </tr>

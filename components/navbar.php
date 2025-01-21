@@ -17,7 +17,7 @@ $menuItems = [
     </div>
 
     <?php if (empty($_SESSION['photo_user']) && empty($_SESSION['fullname'])) { ?>
-        <a href="<?php $baseLink ?>views/auth/form_login.php" class="btn btn-primary">Login</a>
+        <a href="<?php $baseLink ?>/Playstation/views/auth/form.regis.php" class="btn btn-primary">Login</a>
         <?php } else { ?>
         <div class="img-dropdown">
             <div><?php echo $_SESSION['fullname'] ?></div>

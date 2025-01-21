@@ -2,12 +2,12 @@
 $title = 'Product';
 $page = 'read_product';
 include '../../components/head-user.php';
-
 ?>
 
-
 <div class="container mt-5">
-    <h1><a href="../../index.php" class="btn btn-outline-info btn-sm mr-3"> <— </a>List Ps 3</h1>
+    <h1>
+        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List Ps 3
+    </h1>
 
     <div class="card">
         <div class="table-wrapper">
@@ -26,22 +26,29 @@ include '../../components/head-user.php';
                 <tbody>
                     <?php
                     include "../../connection.php";
+
                     $query = "SELECT * FROM product WHERE type = 'PS3'";
-                    $user = mysqli_query($db_connection, $query);
+                    $products = mysqli_query($db_connection, $query);
 
                     $i = 1;
-                    foreach ($user as $data) :
-                        $statusCheck = $data['status'];
 
-                        if ($statusCheck == 'kosong') {
+                    foreach ($products as $data) {
+
+
+                        $statusValue = $data['status'];
+
+                        if ($statusValue === 'availabel') {
                             $status = 'badge-success';
-                            $text = 'Kosong';
-                        } else if ($statusCheck == 'di_booking') {
+                            $btn = "btn-primary";
+                            $text = 'AVAILABLE';
+                        } elseif ($statusValue === 'rented') {
                             $status = 'badge-danger';
-                            $text = 'Di Booking';
-                        } else {
+                            $btn = "btn-danger btn-disabled";
+                            $text = 'RENTED';
+                        } elseif ($statusValue === 'booked') {
                             $status = 'badge-warning';
-                            $text = 'Di Sewa';
+                            $btn = "btn-warning";
+                            $text = 'BOOKED';
                         }
                     ?>
                         <tr>
@@ -51,19 +58,21 @@ include '../../components/head-user.php';
                             <td><?= $data['specification']; ?></td>
                             <td><?= number_format($data['hourly_price'], 0, ',', '.') ?></td>
                             <td>
-                                <div class="badge <?php echo $status ?>">
-                                    <p><?php echo $text ?></p>
+                                <div class="badge <?php echo $status; ?>">
+                                    <?php echo $text; ?>
                                 </div>
                             </td>
                             <td>
-                                <a href="../booking/add_booking.php?id=<?= $data['product_id'] ?>" class="btn btn-danger">booking</a>
+                                <a href="../booking/add_booking.php?id=<?= $data['product_id'] ?>" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<?php include '../../components/footer-user.php' ?>
+<?php include '../../components/footer-user.php'; ?>

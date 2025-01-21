@@ -14,7 +14,6 @@ if (isset($_POST['login'])) {
             $_SESSION['userid'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['password'] = $user['password'];
-            // $_SESSION['usertype'] = $user['user_type_230012'];
             $_SESSION['fullname'] = $user['fullname'];
             $_SESSION['user_photo'] = $user['user_photo'];
             if ($user['role_id'] == 1) {

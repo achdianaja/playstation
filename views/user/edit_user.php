@@ -10,7 +10,6 @@ $data = mysqli_fetch_assoc($pet);
 ?>
 
 <h1>Form Edit </h1>
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-body">
@@ -30,6 +29,22 @@ $data = mysqli_fetch_assoc($pet);
                     <label for="phone" class="form-label">Phone</label>
                     <input type="number" name="phone" id="phone" value="<?= $data['phone']?>" required class="form-control">
                 </div>
+                <div>
+                <img src="../../public/assets/images/user/<?=$data['user_photo']; ?>" width="auto" height="100" style="border-radius: 100%;"> 
+                </div>
+            </tr>
+            <tr>
+                <td>New Photo</td>
+                <td>: <input type="file" name="new_photo"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="save" value="SAVE">
+                    <input type="reset" name="reset" value="RESET">
+                    <input type="hidden" name="user_id" value="<?= $data['user_id'] ?>">
+                    <input type="hidden" name="user_photo" value="<?= $data['user_photo']; ?>" />
+                </td>
  
                 <div class="form-group" style="display:flex; justify-content:flex-end;">
                     <button type="submit" name="save" class="btn btn-success mx-3">SAVE</button>

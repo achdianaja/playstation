@@ -2,7 +2,7 @@
 session_start();
 include 'config.php';
 $menuItems = [
-    'Profile' => ['views/users/user_photo.php'],
+    'Profile' => ['views/customer/profile.php'],
     'Logout' => ['action/auth/logout.php'],
     'Change Password' => ['views/auth/change_password.php'],
 ];

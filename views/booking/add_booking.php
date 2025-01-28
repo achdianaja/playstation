@@ -19,7 +19,7 @@ include '../../components/head-user.php';
                 <input type="hidden" name="user_id" value="<?= $_SESSION['userid'] ?>">
                 <input type="hidden" name="hourly_price" value="<?= $data['hourly_price'] ?>">
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="product_name" class="form-label">Product</label>
                     <input type="text" id="product_name" required class="form-control" value="<?= $data['product_name'] ?>" disabled>
                 </div>
@@ -30,7 +30,13 @@ include '../../components/head-user.php';
                         <input type="datetime-local" name="start_rent" id="start_rent" required class="form-control" style="flex: 1;">
                         <input type="datetime-local" name="end_rent" id="end_rent" required class="form-control" style="flex: 1;">
                     </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="rental_duration" class="form-label">Rental Duration (in hours)</label>
+                    <input type="number" name="duration" id="duration" required class="form-control" min="1" placeholder="Enter rental duration in hours">
                 </div>
+
 
                 <div class="form-group" style="display:flex; justify-content:flex-end;">
                     <button type="submit" name="save" class="btn btn-success mx-3">SAVE</button>

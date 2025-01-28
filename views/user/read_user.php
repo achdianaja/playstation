@@ -33,7 +33,7 @@ include '../../components/head.php';
                         <tr>
                             <td><?php echo $i++; ?></td>
                             <td><img src="/playstation/public/assets/images/user/<?= $data['user_photo']; ?>" alt="User Photo" width="50" height="auto" style="border-radius: 100%;"></td>
-                            <td><?php echo $data['fullname']; ?></td>
+                            <td><?php echo $data['name']; ?></td>
                             <td><?= $data['username']; ?></td>
                             <td><?= $data['phone']; ?></td>
                             <td><a href="delete_user.php?id=<?= $data['user_id'] ?>" class="btn btn-outline-info" onclick="return confirm('Are you sure?')">Delete User</a></td>

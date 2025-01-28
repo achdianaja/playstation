@@ -13,8 +13,9 @@
         <div class="login-card">
             <!-- <h2>Login</h2> -->
             <img src="../../public/assets/logo-playstation.png" alt="logo" class="logo" width="300" height="auto">
-            <form method="POST" action="../../action/auth/register.php">
-                <input type="text" id="fullname" name="fullname" placeholder="Fullname" required>
+            <form method="POST" action="../../views/auth/form_login.php">
+                <p>have an account? <a href="form_login.php">click here</a></p>
+                <input type="text" id="fullname" name="name" placeholder="Fullname" required>
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="text" id="phone" name="phone" placeholder="Phone" required>
                 <input type="password" id="pass" name="password" placeholder="Password" required>

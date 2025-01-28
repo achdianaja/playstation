@@ -52,9 +52,8 @@ include '../../components/head.php';
                         } elseif ('waiting') {
                             $status = 'badge-warning';
                             $text = 'waiting';
-                        } else {
+                        } elseif ('unpaid') {
                             $status = 'badge-danger';
-                            $text = 'unpaid';
                         }
                     ?>
                         <tr>
@@ -71,21 +70,10 @@ include '../../components/head.php';
                                 </div>
                             </td>
 
-                            <?php if ($data['order_status'] != 'paid') { ?>
-                                <td>
-                                    <form action="../../action/booking/approve.php" method="POST" style="display:inline;">
-                                        <input type="hidden" name="booking_id" value="<?php echo $data['booking_id']; ?>">
-                                        <input type="hidden" name="user_id" value="<?php echo $data['user_id']; ?>">
-                                        <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
-                                        <button type="submit" class="btn btn-success btn-sm">Confirm</button>
-                                    </form>
-                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
-                                </td>
-                            <?php } else { ?>
-                                <td>
-                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Stop</a>
-                                </td>
-                            <?php } ?>
+                            <td>
+                                <a href="detail.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-primary btn-sm">View</a>
+                                <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this booking?')">Stop</a>
+                            </td>
                         </tr>
                     <?php
                     }

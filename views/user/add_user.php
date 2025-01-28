@@ -12,8 +12,8 @@ include '../../components/head.php';
         <div class="card-body">
             <form action="../../action/user/create_user.php" method="POST">
                 <div class="form-group">
-                    <label for="name" class="form-label">Fullname</label>
-                    <input type="text" name="fullname" id="name" required class="form-control">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" id="name" required class="form-control">
                 </div>
                 
                 <div class="form-group">

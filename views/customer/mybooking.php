@@ -2,6 +2,9 @@
 $title = '';
 $page = 'My Product';
 include '../../components/head-user.php';
+
+date_default_timezone_set('Asia/Jakarta');
+
 ?>
 
 <div class="container mt-5">
@@ -18,6 +21,7 @@ include '../../components/head-user.php';
                         <th>Product Name</th>
                         <th>Type</th>
                         <th>Rental Duration</th>
+                        <th>Rent Status</th>
                         <th>Total Price</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -27,11 +31,11 @@ include '../../components/head-user.php';
                     <?php
                     include "../../connection.php";
 
-
                     $query = "SELECT booking.*, 
                                 booking.status AS booking_status, 
                                 order_product.status AS order_status,
                                 order_product.rent_duration,
+                                order_product.order_id AS order_id,
                                 product.*
                             FROM booking 
                             JOIN product ON product.product_id = booking.product_id 
@@ -49,20 +53,38 @@ include '../../components/head-user.php';
                         if ($statusValue === 'paid') {
                             $status = 'badge-info';
                             $text = 'paid';
-                        } elseif('waiting'){ 
+                        } elseif ($statusValue === 'waiting') {
                             $status = 'badge-warning';
                             $text = 'waiting';
-                        } else {
+                        } elseif (empty($statusValue)) {
                             $status = 'badge-danger';
                             $text = 'unpaid';
+                        }
+
+                        $rentStatus = $data['booking_status'];
+                        if ($rentStatus === 'starting') {
+                            $badge = 'badge-info';
+                            $textStatus = 'starting';
+                        } elseif ('in_queue') {
+                            $badge = 'badge-warning';
+                            $textStatus = 'in queue';
+                        } elseif ('cancelled') {
+                            $badge = 'badge-danger';
+                            $textStatus = 'cancelled';
                         }
                     ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
                             <td><?php echo $data['product_name']; ?></td>
                             <td><?= $data['type']; ?></td>
-                            <td><?= date('H:i', strtotime($data['start_rent'])) . ' - ' . date('H:i', strtotime($data['end_rent'])); ?> <div class="badge badge-info">Starting</div></td>
-                            <td><?= $data['rent_duration']; ?></td>
+                            <td><?= date('H:i', $data['start_rent']) . ' - ' . date('H:i', $data['end_rent']); ?>
+                            <td><?= ' - ' . date('H:i', 1737965206); ?>
+                            </td>
+                            <td>
+                                <div class="badge <?php echo $badge; ?>">
+                                    <?php echo $textStatus; ?>
+                                </div>
+                            </td>
                             <td><?= number_format($data['total_price'], 0, ',', '.') ?></td>
                             <td>
                                 <div class="badge <?php echo $status; ?>">
@@ -70,10 +92,15 @@ include '../../components/head-user.php';
                                 </div>
                             </td>
                             <td>
-                                <?php if ($data['order_status'] !== 'paid') { ?>
+                                <?php if ($data['order_status'] == 'paid') { ?>
+                                    <a href="view-confirm.php?order_id=<?php echo $data['order_id']; ?>" class="btn btn-primary btn-sm">View</a>
+                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Stop</a>
+                                <?php } elseif ($data['order_status'] == 'waiting') { ?>
+                                    <a href="view-confirm.php?order_id=<?php echo $data['order_id']; ?>" class="btn btn-primary btn-sm">View</a>
+                                <?php } else { ?>
                                     <a href="../payment/read_payment.php?booking_id=<?php echo $data['booking_id']; ?>" class="btn btn-success btn-sm">Paid</a>
+                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
                                 <?php } ?>
-                                <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
                             </td>
                         </tr>
                     <?php

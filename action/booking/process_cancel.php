@@ -9,7 +9,7 @@ if (isset($_GET['booking_id'])) {
   $delete_result = mysqli_query($db_connection, $delete_query);
 
   if ($delete_result) {
-    $update_query = "UPDATE product SET status = 'availabel' WHERE product_id = '$_GET[product_id]'";
+    $update_query = "UPDATE product SET status = 'available' WHERE product_id = '$_GET[product_id]'";
     mysqli_query($db_connection, $update_query);
     if ($_SESSION['role'] == 1) {
       echo "<script>alert('Canceled !');window.location.replace('../../views/booking/read_booking.php')</script>";

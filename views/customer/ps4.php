@@ -6,7 +6,7 @@ include '../../components/head-user.php';
 
 <div class="container mt-5">
     <h1>
-        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List Ps 3
+        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List PS 4
     </h1>
 
     <div class="card">
@@ -27,17 +27,19 @@ include '../../components/head-user.php';
                     <?php
                     include "../../connection.php";
 
-                    $query = "SELECT * FROM product WHERE type = 'PS4'";
+                    $query = "SELECT product.*, booking.user_id AS user_id, booking.status AS booking_status
+                                FROM product
+                                LEFT JOIN booking ON booking.product_id = product.product_id
+                                WHERE product.type = 'PS4'
+                            ";
                     $products = mysqli_query($db_connection, $query);
 
                     $i = 1;
 
                     foreach ($products as $data) {
-
-
                         $statusValue = $data['status'];
 
-                        if ($statusValue === 'availabel') {
+                        if ($statusValue === 'available') {
                             $status = 'badge-success';
                             $btn = "btn-primary";
                             $text = 'AVAILABLE';
@@ -47,7 +49,7 @@ include '../../components/head-user.php';
                             $text = 'RENTED';
                         } elseif ($statusValue === 'booked') {
                             $status = 'badge-warning';
-                            $btn = "btn-warning";
+                            $btn = "btn-warning" . " " . ($_SESSION['userid'] != $data['user_id'] ? 'btn-disabled' : '');
                             $text = 'BOOKED';
                         }
                     ?>
@@ -63,7 +65,11 @@ include '../../components/head-user.php';
                                 </div>
                             </td>
                             <td>
-                                <a href="../booking/add_booking.php?id=<?= $data['product_id'] ?>" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
+                                <?php if ($statusValue === 'booked') { ?>
+                                    <a href="mybooking.php" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
+                                <?php } else { ?>
+                                    <a href="../booking/add_booking.php?id=<?= $data['product_id'] ?>" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php

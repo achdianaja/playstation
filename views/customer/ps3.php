@@ -6,7 +6,7 @@ include '../../components/head-user.php';
 
 <div class="container mt-5">
     <h1>
-        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List Booking
+        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List PS 3
     </h1>
 
     <div class="card">
@@ -39,7 +39,7 @@ include '../../components/head-user.php';
                     foreach ($products as $data) {
                         $statusValue = $data['status'];
 
-                        if ($statusValue === 'availabel') {
+                        if ($statusValue === 'available') {
                             $status = 'badge-success';
                             $btn = "btn-primary";
                             $text = 'AVAILABLE';

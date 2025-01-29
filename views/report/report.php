@@ -85,7 +85,7 @@ $year = date('Y');
                                         <!-- <td><?php echo $data['booking_id'] ?></td> -->
                                         <td><?php echo $data['user_name'] ?></td>
                                         <td><?php echo number_format($data['total_price'], 0, ',', '.'); ?></td>
-                                        <td><?php echo $data['rent_duration'] ?> days</td>
+                                        <td><?php echo $data['rent_duration'] ?></td>
                                         <td><?php echo $data['status'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>

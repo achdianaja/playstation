@@ -78,7 +78,7 @@ date_default_timezone_set('Asia/Jakarta');
                             <td><?php echo $data['product_name']; ?></td>
                             <td><?= $data['type']; ?></td>
                             <td><?= date('H:i', $data['start_rent']) . ' - ' . date('H:i', $data['end_rent']); ?>
-                            <td><?= ' - ' . date('H:i', 1737965206); ?>
+                            <!-- <td><?= ' - ' . date('H:i', 1737965206); ?> -->
                             </td>
                             <td>
                                 <div class="badge <?php echo $badge; ?>">

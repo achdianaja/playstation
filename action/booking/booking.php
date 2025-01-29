@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Semua input harus diisi!");
     }
 
-
     $start_rent = time();
 
     $end_rent = $start_rent + ($duration * 3600);

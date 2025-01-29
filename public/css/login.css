@@ -1,5 +1,26 @@
-*{
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+* {
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 .login-wrap {
@@ -7,63 +28,152 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 10px;
+    overflow: auto;
 }
 
 .login-card {
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    max-width: 400px; 
-    padding: 2rem;
+    max-width: 900px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    align-items: center;
+}
+
+.login-card img {
+    width: 50%;
+    object-fit: cover;
+    align-items: center;
+}
+
+.login-card-content {
+    width: 50%;
+    padding: 2rem 2rem;
     text-align: center;
 }
 
-.login-card h2 {
-    margin-bottom: 1.5rem;
+.text-wrapper {
+    margin-bottom: 1rem;
+}
+
+.login-card-content h2 {
     font-size: 24px;
     color: #333;
 }
 
-.login-card input[type="text"],
-.login-card input[type="password"] {
+.login-card-content input[type="text"],
+.login-card-content input[type="password"],
+.login-card-content input[type="email"],
+.login-card-content input[type="number"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
-.login-card .btn-login {
+.login-card-content input[type="text"]:focus,
+.login-card-content input[type="password"]:focus,
+.login-card-content input[type="email"]:focus,
+.login-card-content input[type="number"]:focus {
+    border: 1px solid #007bff;
+    outline: none;
+    /* box-shadow: 0 0 5px rgba(0, 73, 204, 0.5); */
+}
+
+.login-card-content .btn-login {
     width: 100%;
     padding: 10px;
     margin-top: 1rem;
     font-size: 16px;
-    background-color: blueviolet;
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-weight: bold;
 }
 
-.login-card button:hover {
-    background-color: rgb(93, 33, 150);
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input[type="password"] {
+    flex: 1;
+    margin-right: 0;
+}
+
+.password-wrapper .btn-show {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+.btn-show img {
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .login-card {
+        flex-direction: column;
+    }
+
+    .login-card-content p {
+        font-size: 15px;
+    }
+
+    .login-card img {
+        width: 100%;
+    }
+
+    .login-card-content {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
-    .login-card {
-padding: 1.5rem;
+    .login-card-content {
+        padding: 1.5rem 1.5rem;
     }
 
-    .login-card h2 {
-font-size: 20px;
+    .login-card-content h2 {
+        font-size: 20px;
     }
 
-    .login-card input[type="text"],
-    .login-card input[type="password"],
-    .login-card button {
-font-size: 14px;
+    .login-card-content p {
+        font-size: 15px;
+    }
+
+    .login-card-content input[type="text"],
+    .login-card-content input[type="password"],
+    .login-card-content input[type="email"],
+    .login-card-content input[type="number"],
+    .login-card-content .btn-login {
+        font-size: 14px;
+    }
+
+    .btn-show img {
+        width: 18px;
+        height: 18px;
     }
 }

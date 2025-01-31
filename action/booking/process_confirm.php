@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hourly_price = $hourly_price_row['hourly_price'];
 
 
-    $insert_query = "INSERT INTO order_product (booking_id, user_id, total_price, rent_duration, payment_method) 
-                     VALUES('$booking_id', '$user_id', '$total_price', '$rent_duration', '$payment_method')";
+    $insert_query = "INSERT INTO order_product (booking_id, user_id, product_id,total_price, rent_duration, payment_method) 
+                     VALUES('$booking_id', '$user_id', '$product_id','$total_price', '$rent_duration', '$payment_method')";
     $insert_result = mysqli_query($db_connection, $insert_query);
 
     if (!$insert_result) {

@@ -39,6 +39,7 @@ foreach ($result as $data) {
         $jadwalHariIni[$productType][] = "$startTime - $endTime";
     }
 }
+
 ?>
 
 <h1 class="mt-3 text-center">Jadwal Hari <?php echo $currentDayTranslated; ?></h1>
@@ -57,7 +58,6 @@ foreach ($result as $data) {
                     <?php
                     $maxRows = max(array_map('count', $jadwalHariIni));
 
-                    echo $maxRows;
                     for ($i = 0; $i < $maxRows; $i++): ?>
                         <tr>
                             <?php foreach ($jadwalHariIni as $type => $jadwal): ?>
@@ -88,11 +88,13 @@ foreach ($result as $data) {
 
     foreach ($productTypes as $index => $type): ?>
         <div class="col-sm-4">
-            <div class="card" style="background-color: <?php echo $colors[$index]; ?>;">
-                <div class="card-body text-center">
-                    <img src="public/assets/images/<?php echo $images[$index]; ?>" alt="" class="card-img">
-                    <h1><?php echo $productCounts[$type]; ?></h1>
-                    <a href="views/customer/<?php echo strtolower($type); ?>.php" class="btn btn-primary">Lihat</a>
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <h1 class="my-3"><?php echo $productCounts[$type]; ?></h1>
+                        <a href="views/customer/<?php echo strtolower($type); ?>.php" class="btn btn-primary">Lihat</a>
+                    </div>
+                    <img src="public/assets/images/<?php echo $images[$index]; ?>" alt="" class="" style="width: 200px;">
                 </div>
             </div>
         </div>

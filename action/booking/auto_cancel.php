@@ -41,7 +41,6 @@ if (mysqli_num_rows($result) > 0) {
                 die('Query UPDATE gagal: ' . mysqli_error($db_connection));
             } else {
                 $response[] = "Waktu Sudah Habis";
-
             }
         } else {
             $response[] = "Gagal membatalkan Booking.";

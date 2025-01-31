@@ -1,6 +1,6 @@
 <?php
 $title = 'Product';
-$page = 'read_product';
+$page = 'Product List';
 include '../../components/head.php';
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 $title = 'user';
-$page = 'read_user';
+$page = 'User List';
 include '../../components/head.php';
 
 ?>
-<h1>user List</h1>
+<h1>User List</h1>
 
 <div class="container mt-5">
     <p><a class="btn btn-success btn-sm" href="add_user.php">Add New User</a></p>

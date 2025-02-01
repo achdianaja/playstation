@@ -7,7 +7,7 @@ if (!isset($_SESSION['login'])) {
 
 if (isset($_POST['update'])) {
     include '../../connection.php';
-
+    
     $user_id = $_POST['user_id'];
     $name = $_POST['name'];
     $username = $_POST['username'];
@@ -16,7 +16,7 @@ if (isset($_POST['update'])) {
     $photo_name = $_FILES['user_photo']['name'];
     $photo_tmp = $_FILES['user_photo']['tmp_name'];
     $old_photo = $_POST['old_photo'];
-        
+    
     $query = "UPDATE user SET 
         name = '$name',
         username = '$username',
@@ -48,16 +48,7 @@ if (isset($_POST['update'])) {
             die("Upload error: " . $_FILES['user_photo']['error']);
         }
     }
-    if (isset($_SESSION['role'])){
-            if ($_SESSION['role'] == 1) {
-               echo "<script>alert('Change Success !');window.location.replace('../../views/admin/profile-admin.php')</script>";
-            } else {
-               echo "<script>alert('Change Success !');window.location.replace('../../views/customer/profile.php')</script>";
-            }
-    } else {
-        echo "<script>alert('Role tidak ditemukan');window.location.replace('../../views/auth/form_login.php')</script>";
-        exit;
-    }
+    
+    header("Location: ../../views/customer/profile");
+    exit;
 }
-    // header("Location: ../../views/customer/profile.php");
-    // exit;

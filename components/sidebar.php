@@ -31,6 +31,6 @@ $menuItems = [
                 </a>
             </li>
         <?php endforeach; ?>
-
+        
     </ul>
 </div>

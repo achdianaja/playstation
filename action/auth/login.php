@@ -17,6 +17,7 @@ if (isset($_POST['login'])) {
             $_SESSION['name'] = $user['name'];
             $_SESSION['user_photo'] = $user['user_photo'];
             $_SESSION['role'] = $user['role_id'];
+            //$_SESSION['role_id'] = $user['role_id'];
             if ($user['role_id'] == 1) {
                 echo "<script>alert('Login Success !');window.location.replace('../../views/dashboard.php')</script>";
             } else {

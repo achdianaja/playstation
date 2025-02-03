@@ -4,7 +4,6 @@ include 'config.php';
 $menuItems = [
     'Profile' => ['views/admin/profile-admin.php'],
     'Logout' => ['action/auth/logout.php'],
-    'Change Password' => ['views/auth/change_password.php'],
 ];
 ?>
 
@@ -21,7 +20,7 @@ $menuItems = [
         <?php } else { ?>
         <div class="img-dropdown">
             <div><?php echo $_SESSION['name'] ?></div>
-            <img src="/playstation/public/assets/images/user/<?php echo $_SESSION['user_photo'] ?>" alt="User Photo" width="40" height="40" style="border-radius: 100%;">
+            <img src="/playstation/public/assets/images/user/<?php echo $_SESSION['user_photo'] ?>" alt="User Photo" width="40" height="40" style="border-radius: 100%; object-fit: cover; object-position: top;">
             <div class="dropdown-menu">
                 <?php foreach ($menuItems as $title => [$link]) : ?>
                     <a href="<?= $baseLink . $link ?>">

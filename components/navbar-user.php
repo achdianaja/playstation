@@ -5,7 +5,6 @@ include $baseLink . 'connection.php';
 $menuItems = [
     'Profile' => ['views/customer/profile.php'],
     'Logout' => ['action/auth/logout.php'],
-    'Change Password' => ['views/auth/change_password.php'],
 ];
 
 ?>
@@ -18,7 +17,7 @@ $menuItems = [
 
     <?php if (empty($_SESSION['photo_user']) && empty($_SESSION['name'])) { ?>
         <div>
-            <a href="<?php echo $baseLink ?>views/auth/form_regis.php" class="btn btn-primary">Register</a>
+            <a href="<?php echo $baseLink ?>views/auth/form_register.php" class="btn btn-primary">Register</a>
             <a href="<?php echo $baseLink ?>views/auth/form_login.php" class="btn btn-primary">Login</a>
         </div>
     <?php } else {
@@ -37,7 +36,7 @@ $menuItems = [
             <div class="img-dropdown" style="position: relative;">
                 <div style="display: flex; align-items: center; cursor: pointer;">
                     <div style="margin-right: 10px;"> <?php echo $_SESSION['name'] ?> </div>
-                    <img src="/playstation/public/assets/images/user/<?php echo $_SESSION['user_photo'] ?>" alt="User Photo" width="40" height="40" style="border-radius: 50%;">
+                    <img src="/playstation/public/assets/images/user/<?php echo $_SESSION['user_photo'] ?>" alt="User Photo" width="40" height="40" style="border-radius: 100%; object-fit: cover; object-position: top;">
                 </div>
                 <div class="dropdown-menu" style="position: absolute; top: 50px; right: 0; background: white; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 5px; display: none; flex-direction: column;">
                     <?php foreach ($menuItems as $title => [$link]) : ?>

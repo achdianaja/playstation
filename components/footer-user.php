@@ -1,4 +1,5 @@
 </main>
+
 <?php
 $footerPath = ($page != "Home") ? "../../public" : "public";
 // $actionPath = ($page != "Home") ? "/playstation/" : "/playstation/";
@@ -12,6 +13,7 @@ $footerPath = ($page != "Home") ? "../../public" : "public";
                 data.forEach(message => {
                     alert(message);
                     console.log(message);
+                    window.location.reload();
                 });
             })
             .catch(error => {
@@ -23,6 +25,9 @@ $footerPath = ($page != "Home") ? "../../public" : "public";
 
     autoCancelBooking();
 </script>
+<footer class="footer">
+        <p>&copy; 2021 Concert Starlight Symphony</p>
+    </footer>
 </body>
 
 </html>

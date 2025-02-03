@@ -1,23 +1,34 @@
 <?php
 session_start();
+include '../../connection.php';
+
 if (isset($_POST['change'])) {
-    include '../../../koneksi.php';
+    if (!isset($_SESSION['userid'])) {
+        die("Unauthorized access.");
+    }
 
-    $password = password_hash($_POST['new_password_230012'], PASSWORD_DEFAULT);
+    $new_password = trim($_POST['new_password']);
 
-    $query = "UPDATE users_230012 SET password_230012='$password' WHERE user_id_230012='$_SESSION[userid]'";
+    if (empty($new_password)) {
+        echo "<script>alert('Password cannot be empty!');window.history.back();</script>";
+        exit;
+    }
 
-    $create = mysqli_query($db_con, $query);
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
-    if ($create) {
-        $_SESSION['password'] = $password;
-        echo "<script>alert('Change Password Success !');window.location.replace('../index.php')</script>";
+    $query = "UPDATE user SET password='$hashed_password' WHERE user_id='$_SESSION[userid]'";
+    $execute = mysqli_query($db_connection, $query);
+
+    if ($execute) {
+        $_SESSION['password'] = $hashed_password;
+
+        $redirect_url = ($_SESSION['role'] == 1)
+            ? '../../views/admin/profile-admin.php'
+            : '../../views/customer/profile.php';
+
+        header("Location: $redirect_url");
+        exit;
     } else {
-        echo "<script>alert('Change Password Failed !');window.location.replace('change_password_230012.php')</script>";
+        echo "<script>alert('Change Password Failed!');window.location.replace('change_password.php');</script>";
     }
 }
-?>
-
-<script>
-    window.location.replace("read_user_230012.php")
-</script>

@@ -24,9 +24,9 @@ if (isset($_POST['login'])) {
                 echo "<script>alert('Login Success !');window.location.replace('../../index.php')</script>";
             }
         } else {
-            echo "<script>alert('Login Failed, Wrong Password !');window.location.replace('../../auth/form_login.php')</script>";
+            echo "<script>alert('Login Failed, Wrong Password !');window.location.replace('../../views/auth/form_login.php')</script>";
         }
     } else {
-        echo "<script>alert('Login Failed, User not found !');window.location.replace('f../../auth/form_login.php')</script>";
+        echo "<script>alert('Login Failed, User not found !');window.location.replace('../../index.php')</script>";
     }
 }

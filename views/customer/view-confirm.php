@@ -35,8 +35,16 @@ include '../../components/head-user.php';
 
                     if ($data) {
                         $statusValue = $data['order_status'] ?? 'unpaid';
-                        $statusText = ($statusValue === 'paid') ? 'Paid' : 'Waiting';
-                        $statusBadge = ($statusValue === 'paid') ? 'badge-info' : 'badge-warning';
+                        if ($statusValue === 'paid') {
+                            $statusText = 'Paid';
+                            $statusBadge = 'badge-success';
+                        } elseif ($statusValue === 'waiting') {
+                            $statusText = 'Waiting for Confirmation';
+                            $statusBadge = 'badge-warning';
+                        } else {
+                            $statusText = 'Unpaid';
+                            $statusBadge = 'badge-danger';
+                        }
                 ?>
 
                         <table class="table">

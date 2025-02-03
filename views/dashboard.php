@@ -63,10 +63,10 @@ $product = mysqli_fetch_assoc($resultProduct)['total_product'];
 </div>
 
 <?php
-$queryOrders = "SELECT o.order_id, u.name, p.product_name, o.total_price, o.created_at, o.rent_duration
+$queryOrders = "SELECT o.order_id, COALESCE(u.name, o.renter) AS user_name, p.product_name, o.total_price, o.created_at, o.rent_duration
                 FROM order_product o
-                JOIN user u ON o.user_id = u.user_id
-                JOIN product p ON o.product_id = p.product_id
+                LEFT JOIN user AS u ON o.user_id = u.user_id
+                JOIN product p ON o.product_id = p.product_id WHERE o.status = 'paid'
                 ORDER BY o.created_at DESC 
                 LIMIT 10";
 
@@ -92,7 +92,7 @@ $resultOrders = $db_connection->query($queryOrders);
         while ($row = $resultOrders->fetch_assoc()): ?>
             <tr>
                 <td><?php echo $no++ ?></td>
-                <td><?php echo $row['name']; ?></td>
+                <td><?php echo $row['user_name']; ?></td>
                 <td><?php echo $row['product_name']; ?></td>
                 <td><?php echo $row['rent_duration']; ?></td>
                 <td><?php echo number_format($row['total_price'], 0, ',', '.'); ?></td>

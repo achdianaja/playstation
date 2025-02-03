@@ -4,10 +4,15 @@ $page = 'Product List';
 include '../../components/head.php';
 
 ?>
-<h1>Product List</h1>
-
 <div class="container mt-5">
-    <p><a class="btn btn-success btn-sm" href="add_product.php">Add New Product</a></p>
+    <div style="display: flex; justify-content:space-between">
+        <h1>
+            <a href="../dashboard.php" class="btn btn-outline-info btn-sm mr-3">←</a> List Product
+        </h1>
+        <p>
+            <a class="btn btn-success btn-sm" href="add_product.php">Add New Product</a>
+        </p>
+    </div>
     <div class="card">
         <div class="table-wrapper">
             <table class="table table-striped">
@@ -23,11 +28,11 @@ include '../../components/head.php';
                 </thead>
                 <tbody>
                     <?php
-                    include "../../connection.php";          
-                    $query = "SELECT * FROM product";       
+                    include "../../connection.php";
+                    $query = "SELECT * FROM product";
                     $user = mysqli_query($db_connection, $query);
 
-                    $i = 1; 
+                    $i = 1;
                     foreach ($user as $data) :
                     ?>
                         <tr>
@@ -37,8 +42,8 @@ include '../../components/head.php';
                             <td><?= $data['specification']; ?></td>
                             <td><?= number_format($data['hourly_price'], 0, ',', '.') ?></td>
                             <td>
-                                <a href="edit_product.php?id=<?= $data['product_id'] ?> " class="btn btn-success">Edit Product</a>
-                                <a href="delete_product.php?id=<?= $data['product_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete Product</a>
+                                <a href="edit_product.php?id=<?= $data['product_id'] ?> " class="btn btn-warning">Edit</a>
+                                <a href="../../action/product/delete_product.php?id=<?= $data['product_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

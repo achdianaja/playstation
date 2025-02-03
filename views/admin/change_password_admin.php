@@ -7,11 +7,11 @@ $pet = mysqli_query($db_connection, $query);
 
 $data = mysqli_fetch_assoc($pet);
 $page = "Change Password";
-include "../../components/head-user.php";
+include "../../components/head.php";
 ?>
 
 <div class="container mt-4" style="height: 71vh;">
-    <h1><a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> <?= $page ?></h1>
+    <h1><a href="../dashboard.php" class="btn btn-outline-info btn-sm mr-3">←</a> <?= $page ?></h1>
     <div class="card">
         <div class="card-content">
             <div class="card-body">
@@ -47,4 +47,4 @@ include "../../components/head-user.php";
         }
     }
 </script>
-<?php include "../../components/footer-user.php"; ?>
+<?php include "../../components/footer.php"; ?>

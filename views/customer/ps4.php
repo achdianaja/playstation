@@ -1,12 +1,12 @@
 <?php
 $title = 'Product';
-$page = 'read_product';
+$page = 'List PS 4';
 include '../../components/head-user.php';
 ?>
 
-<div class="container mt-5">
+<div class="container mt-5" style="height: 100vh;">
     <h1>
-        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List PS 4
+        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List PS 3
     </h1>
 
     <div class="card">
@@ -65,10 +65,21 @@ include '../../components/head-user.php';
                                 </div>
                             </td>
                             <td>
-                                <?php if ($statusValue === 'booked') { ?>
-                                    <a href="mybooking.php" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
-                                <?php } else { ?>
-                                    <a href="../booking/add_booking.php?id=<?= $data['product_id'] ?>" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
+                                <?php if (empty($_SESSION['userid'])) {
+                                    $btn = "btn-primary";
+                                    $text = 'LOGIN TO BOOK';
+                                    $link = '../auth/form_login.php';
+
+                                ?>
+                                    <a href="<?= $link ?>" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
+                                <?php } else {
+                                    $link = '../booking/add_booking.php?id='.$data['product_id'];
+                                ?>
+                                    <?php if ($statusValue === 'booked') { ?>
+                                        <a href="mybooking.php" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
+                                    <?php } else { ?>
+                                        <a href="<?= $link ?>" class="btn <?php echo $btn ?> "><?php echo $text; ?></a>
+                                    <?php } ?>
                                 <?php } ?>
                             </td>
                         </tr>

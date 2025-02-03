@@ -22,8 +22,8 @@
                 <form method="POST" action="../../action/auth/register.php">
                     <input type="text" id="name" name="name" placeholder="Name" required>
                     <input type="text" id="username" name="username" placeholder="Username" required>
-                    <input type="email" id="email" name="email" placeholder="example@example.com" required>
                     <input type="number" id="phone" name="phone" placeholder="0891234567890" required>
+                    <textarea name="address" id="" placeholder="Alamat" required></textarea>
                     <div class="password-wrapper">
                         <input type="password" id="pass" name="password" placeholder="Password" required>
                         <button type="button" id="togglePassword" class="btn-show">

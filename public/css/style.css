@@ -16,9 +16,7 @@
     --btn-success-hover-bg-color: #157347;
     --btn-warning-bg-color: #ffc107;
     --btn-info-bg-color: #0dcaf0;
-    ;
     --btn-info-hover-bg-color: #31d2f2;
-    ;
     --btn-warning-hover-bg-color: #ffca2c;
     --btn-secondary-bg-color: #6c757d;
     --btn-secondary-hover-bg-color: #5a6268;
@@ -332,6 +330,7 @@ a {
 
 .image {
     object-fit: cover;
+    object-position: top;
     /* width: 200px;
     height: 200px; */
 }
@@ -451,6 +450,7 @@ a {
     font-size: 1rem;
     line-height: 1.5;
     border-radius: 0.375rem;
+    cursor: pointer;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -508,7 +508,7 @@ a {
 }
 
 .btn-warning {
-    color: var(--text-color-white);
+    color: var(--text-color-black);
     background-color: var(--btn-warning-bg-color);
     border-color: var(--btn-warning-bg-color);
 }
@@ -837,8 +837,9 @@ a.disabled {
 .footer {
     padding: 48px;
     text-align: center;
-    background-color: var(--main-bg-color);
-    margin-top: 20px;
+    background-color: var(--btn-primary-hover-bg-color);
+    color: var(--text-color-white);
+    margin-top: 0;
 }
 
 .footer ul {
@@ -850,6 +851,7 @@ a.disabled {
 .footer-text {
     margin-top: 20px;
 }
+
 
 /* Bootstrap Grid System - Responsive Row and Column Styles */
 
@@ -1548,4 +1550,10 @@ a.disabled {
 .py-5 {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
+}
+
+
+iframe {
+    border-radius: 10px;
+    border: 0;
 }

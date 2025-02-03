@@ -28,6 +28,7 @@
                         </button>
                     </div>
                     <input type="submit" class="btn-login" value="Masuk" name="login"></input>
+                    <a href="../../index.php" class="btn btn-danger">back</a>
                 </form>
             </div>
         </div>

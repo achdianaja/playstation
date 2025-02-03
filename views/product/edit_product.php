@@ -11,7 +11,6 @@ $data = mysqli_fetch_assoc($pet);
 
 <h1>Form Edit </h1>
 
-
 <div class="container mt-4">
     <div class="card">
         <div class="card-content">

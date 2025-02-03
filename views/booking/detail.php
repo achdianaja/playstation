@@ -13,11 +13,11 @@ include '../../components/head.php';
         <div class="card-content">
             <div class="card-body">
                 <?php
-                    include "../../connection.php";
+                include "../../connection.php";
 
-                    if (isset($_GET['booking_id'])) {
+                if (isset($_GET['booking_id'])) {
 
-                        $query = "SELECT booking.*, 
+                    $query = "SELECT booking.*, 
                                         order_product.status AS order_status, 
                                         order_product.payment_method AS payment_method, 
                                         booking.status AS booking_status, 
@@ -29,13 +29,21 @@ include '../../components/head.php';
                                 JOIN user ON user.user_id = booking.user_id 
                                 WHERE booking.booking_id = '$_GET[booking_id]'";
 
-                        $result = mysqli_query($db_connection, $query);
-                        $data = mysqli_fetch_assoc($result);
+                    $result = mysqli_query($db_connection, $query);
+                    $data = mysqli_fetch_assoc($result);
 
-                        if ($data) {
-                            $statusValue = $data['order_status'] ?? 'unpaid';
-                            $statusText = ($statusValue === 'paid') ? 'Paid' : 'Unpaid';
-                            $statusBadge = ($statusValue === 'paid') ? 'badge-success' : 'badge-warning';
+                    if ($data) {
+                        $statusValue = $data['order_status'] ?? 'unpaid';
+                        if ($statusValue === 'paid') {
+                            $statusText = 'Paid';
+                            $statusBadge = 'badge-success';
+                        } elseif ($statusValue === 'waiting') {
+                            $statusText = 'Waiting for Payment';
+                            $statusBadge = 'badge-warning';
+                        } else {
+                            $statusText = 'Unpaid';
+                            $statusBadge = 'badge-danger';
+                        }
                 ?>
 
                         <table class="table">
@@ -91,9 +99,11 @@ include '../../components/head.php';
                                         <input type="hidden" name="booking_id" value="<?php echo $data['booking_id']; ?>">
                                         <input type="hidden" name="user_id" value="<?php echo $data['user_id']; ?>">
                                         <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
-                                        <button type="submit" class="btn btn-success btn-sm">Confirm</button>
+                                        <?php if ($data['order_status'] === 'waiting') { ?>
+                                            <button type="submit" class="btn btn-success btn-sm">Confirm</button>
+                                        <?php } ?>
                                     </form>
-                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm">Cancel</a>
+                                    <a href="../../action/booking/process_cancel.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this booking?')">Cancel</a>
                                 </td>
                             <?php } ?>
                         </div>

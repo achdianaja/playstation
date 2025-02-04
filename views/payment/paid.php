@@ -1,12 +1,12 @@
 <?php
 $title = '';
 $page = 'Payment';
-include '../../components/head-user.php';
+include '../../components/head.php';
 ?>
 
 <div class="container mt-5">
     <h1 class="mb-4">
-        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">
+        <a href="../booking/read_booking.php" class="btn btn-outline-info btn-sm mr-3">
             &#8592;
         </a> <?= $page ?>
     </h1>
@@ -37,6 +37,18 @@ include '../../components/head-user.php';
                 ?>
 
                     <table class="table table-bordered">
+                        <tr>
+                            <th>Renter</th>
+                            <td><?= $data['renter']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td><?= $data['phone']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td><?= $data['address']; ?></td>
+                        </tr>
                         <tr>
                             <th>Product Name</th>
                             <td><?= $data['product_name']; ?></td>
@@ -69,19 +81,7 @@ include '../../components/head-user.php';
                     <?php if ($statusValue !== 'paid') { ?>
                         <div class="text-center mt-4">
                             <form action="../../action/booking/process_confirm.php" method="POST" style="display:inline;">
-                                <div style="display: flex; align-items: center; margin: 10px 0;" class="mb-5">
-                                    <label for="payment_method" style="margin-right: 20px; font-weight: bold;">Payment Method</label>
-                                    <div style="display: flex; gap: 20px;">
-                                        <div style="display: flex; align-items: center;">
-                                            <input type="radio" id="cash" name="payment_method" required value="cash" style="margin-right: 5px;">
-                                            <label for="cash">Cash</label>
-                                        </div>
-                                        <div style="display: flex; align-items: center;">
-                                            <input type="radio" id="qris" name="payment_method" required value="qris" style="margin-right: 5px;">
-                                            <label for="qris">QRIS</label>
-                                        </div>
-                                    </div>
-                                </div>
+                                <input type="hidden" id="cash" name="payment_method" required value="cash" style="margin-right: 5px;">
                                 <input type="hidden" name="booking_id" value="<?= $data['booking_id']; ?>">
                                 <input type="hidden" name="user_id" value="<?= $data['user_id']; ?>">
                                 <input type="hidden" name="renter" value="<?= $data['renter']; ?>">
@@ -110,4 +110,4 @@ include '../../components/head-user.php';
     </div>
 </div>
 
-<?php include '../../components/footer-user.php'; ?>
+<?php include '../../components/footer.php'; ?>

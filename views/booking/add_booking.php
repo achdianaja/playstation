@@ -5,6 +5,7 @@ $query = "SELECT * FROM product WHERE product_id='$_GET[id]'";
 $product = mysqli_query($db_connection, $query);
 $data = mysqli_fetch_assoc($product);
 
+
 $page = "Form Booking";
 include '../../components/head-user.php';
 ?>
@@ -18,6 +19,9 @@ include '../../components/head-user.php';
                 <form action="../../action/booking/booking.php" method="POST">
                     <input type="hidden" name="product_id" value="<?= $data['product_id'] ?>">
                     <input type="hidden" name="user_id" value="<?= $_SESSION['userid'] ?>">
+                    <input type="hidden" name="renter" value="<?= $_SESSION['name'] ?>">
+                    <input type="hidden" name="address" value="<?= $_SESSION['address'] ?>">
+                    <input type="hidden" name="phone" value="<?= $_SESSION['phone'] ?>">
                     <input type="hidden" name="hourly_price" value="<?= $data['hourly_price'] ?>">
 
                     <div class="form-group">

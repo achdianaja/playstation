@@ -21,7 +21,6 @@ date_default_timezone_set('Asia/Jakarta');
                     <tr>
                         <th>No</th>
                         <th>Renter</th>
-                        <th>Phone Number</th>
                         <th>Product Name</th>
                         <th>Type</th>
                         <th>Rental Duration</th>
@@ -37,12 +36,11 @@ date_default_timezone_set('Asia/Jakarta');
                     $query = "SELECT booking.*, 
                      order_product.status AS order_status, 
                      booking.status AS booking_status, 
-                     product.*,
-                     user.*
-              FROM booking 
-              JOIN product ON product.product_id = booking.product_id
-              LEFT JOIN order_product ON order_product.booking_id = booking.booking_id
-              JOIN user ON user.user_id = booking.user_id";
+                     product.*
+                    FROM booking 
+                    JOIN product ON product.product_id = booking.product_id
+                    LEFT JOIN order_product ON order_product.booking_id = booking.booking_id";
+
 
                     $products = mysqli_query($db_connection, $query);
                     $i = 1;
@@ -68,8 +66,7 @@ date_default_timezone_set('Asia/Jakarta');
                     ?>
                             <tr>
                                 <td><?php echo $i++; ?></td>
-                                <td><?php echo $data['name']; ?></td>
-                                <td><?php echo $data['phone']; ?></td>
+                                <td><?php echo $data['renter']; ?></td>
                                 <td><?php echo $data['product_name']; ?></td>
                                 <td><?= $data['type']; ?></td>
                                 <td><?= date('H:i', $data['start_rent']) . ' - ' . date('H:i', $data['end_rent']); ?></td>
@@ -80,7 +77,16 @@ date_default_timezone_set('Asia/Jakarta');
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="detail.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-primary btn-sm">View</a>
+                                    <div class="badge badge-warning">
+                                        <?php echo $data['type_user']; ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <?php if ($data['type_user'] == 'non_member') { ?>
+                                        <a href="../payment/paid.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-primary btn-sm">View</a>
+                                    <?php } else { ?>
+                                        <a href="detail.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-primary btn-sm">View</a>
+                                    <?php } ?>
                                     <a href="../../action/booking/process_stop.php?booking_id=<?php echo $data['booking_id']; ?>&product_id=<?= $data['product_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to stop this booking?')">Stop</a>
                                 </td>
                             </tr>

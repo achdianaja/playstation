@@ -10,12 +10,7 @@ $query = "SELECT b.booking_id, b.product_id, b.user_id
     FROM booking b
     JOIN order_product op ON b.booking_id = op.booking_id
     WHERE b.end_rent < '$current_time' 
-    AND op.status = 'paid'
-";
-
-if ($user_id) {
-    $query .= " AND b.user_id = '$user_id'";
-}
+    AND op.status = 'paid'";
 
 $result = mysqli_query($db_connection, $query);
 
@@ -44,7 +39,7 @@ if (mysqli_num_rows($result) > 0) {
             die('Query UPDATE gagal: ' . mysqli_error($db_connection));
         }
 
-        if ($user_id && $user_id == $user_booking_id) {
+        if ($user_id === null || $user_id == $user_booking_id) {
             $response[] = "Waktu Sudah Habis";
         }
     }

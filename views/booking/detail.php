@@ -21,12 +21,10 @@ include '../../components/head.php';
                                         order_product.status AS order_status, 
                                         order_product.payment_method AS payment_method, 
                                         booking.status AS booking_status, 
-                                        product.*,
-                                        user.*
+                                        product.*
                                 FROM booking 
                                 JOIN product ON product.product_id = booking.product_id
                                 LEFT JOIN order_product ON order_product.booking_id = booking.booking_id
-                                JOIN user ON user.user_id = booking.user_id 
                                 WHERE booking.booking_id = '$_GET[booking_id]'";
 
                     $result = mysqli_query($db_connection, $query);
@@ -49,7 +47,7 @@ include '../../components/head.php';
                         <table class="table">
                             <tr>
                                 <th>Renters</th>
-                                <td><?= $data['name']; ?></td>
+                                <td><?= $data['renter']; ?></td>
                             </tr>
                             <tr>
                                 <th>Product Name</th>
@@ -100,6 +98,10 @@ include '../../components/head.php';
                                         <input type="hidden" name="user_id" value="<?php echo $data['user_id']; ?>">
                                         <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
                                         <?php if ($data['order_status'] === 'waiting') { ?>
+                                            <button type="submit" class="btn btn-success btn-sm">Confirm</button>
+                                        <?php } ?>
+
+                                        <?php if ($data['type_user'] === 'non_member') { ?>
                                             <button type="submit" class="btn btn-success btn-sm">Confirm</button>
                                         <?php } ?>
                                     </form>

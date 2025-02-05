@@ -17,7 +17,7 @@ $data = mysqli_fetch_assoc($user);
         </h1>
         <div class="row mb-3">
             <div class="col-3" style="height: 100%;">
-                <div class="card" >
+                <div class="card">
                     <div class="card-content">
                         <div class="card-body">
                             <div style="text-align: center;" class="mb-4">
@@ -71,6 +71,11 @@ $data = mysqli_fetch_assoc($user);
                                     <input type="number" id="phone" name="phone" value="<?= $data['phone'] ?>" class="form-control" required>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea name="address" id="address" class="form-control" required><?= $data['address'] ?></textarea>
+                                </div>
+
                                 <input type="submit" class="btn btn-success" value="Save Changes" name="update">
                                 <a href="../auth/change_password.php?id=<?= $data['user_id'] ?>" class="btn btn-primary">Change password</a>
                             </form>
@@ -115,10 +120,10 @@ $data = mysqli_fetch_assoc($user);
                                     <td><?php echo number_format($row['total_price'], 0, ',', '.'); ?></td>
                                     <td><?php echo $row['created_at']; ?></td>
                                 </tr>
-                        <?php
+                            <?php
                             endwhile;
                         else:
-                        ?>
+                            ?>
                             <tr>
                                 <td colspan="5" align="center">Belum ada History</td>
                             </tr>

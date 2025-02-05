@@ -12,10 +12,11 @@ if (isset($_POST['update'])) {
     $name = $_POST['name'];
     $username = $_POST['username'];
     $phone = $_POST['phone'];
+    $address = $_POST['address'];
     $folder = '../../public/assets/images/user/';
     $old_photo = $_POST['old_photo'];
     
-    $query = "UPDATE user SET name = '$name', username = '$username', phone = '$phone' WHERE user_id = '$user_id'";
+    $query = "UPDATE user SET name = '$name', username = '$username', phone = '$phone' , address = '$address' WHERE user_id = '$user_id'";
     $update = mysqli_query($db_connection, $query);
     
     if (!$update) {

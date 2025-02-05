@@ -10,7 +10,7 @@ if(isset($_POST)) {
     $create = mysqli_query($db_connection, $query);
 
     if($create) { 
-        echo "<script>alert('Added Successfuly !');window.location.replace('../../views/dashboard.php')</script>";
+        echo "<script>alert('Added Successfuly !');window.location.replace('../../views/product/read_product.php')</script>";
     } else {
         echo "<script> alert('ADDED FAILED!')</script>";
     }

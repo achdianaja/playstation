@@ -36,7 +36,7 @@ include '../../components/head.php';
                             $statusText = 'Paid';
                             $statusBadge = 'badge-success';
                         } elseif ($statusValue === 'waiting') {
-                            $statusText = 'Waiting for Payment';
+                            $statusText = 'Waiting For Confirmation';
                             $statusBadge = 'badge-warning';
                         } else {
                             $statusText = 'Unpaid';

@@ -40,7 +40,7 @@ date_default_timezone_set('Asia/Jakarta');
                             FROM booking 
                             JOIN product ON product.product_id = booking.product_id 
                             LEFT JOIN order_product ON order_product.booking_id = booking.booking_id
-                            WHERE booking.user_id = '$_SESSION[userid]'";
+                            WHERE booking.user_id = '$_SESSION[userid]' ORDER BY booking.created_at DESC";
 
 
 

@@ -26,6 +26,12 @@ include '../../components/head.php';
                         <input type="number" name="phone" id="phone" required class="form-control">
                     </div>
 
+                    <div class="form-group">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea name="address" id="address" required class="form-control"></textarea>
+
+                    </div>
+
                     <div class="form-group" style="display:flex; justify-content:flex-end;">
                         <button type="submit" name="save" class="btn btn-success mx-3">SAVE</button>
                         <button type="reset" class="btn btn-danger">Reset</button>

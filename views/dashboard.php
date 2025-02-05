@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])) {
 
 include '../connection.php';
 
-$queryPrice = "SELECT SUM(total_price) AS total_price FROM order_product";
+$queryPrice = "SELECT SUM(total_price) AS total_price FROM order_product WHERE `status` = 'paid'";
 $resultPrice = $db_connection->query($queryPrice);
 $totalPrice = mysqli_fetch_assoc($resultPrice)['total_price'];
 

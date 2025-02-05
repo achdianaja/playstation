@@ -1,7 +1,7 @@
 <?php
 $db_host="localhost"; //db server name
 $db_username="root";  //db username
-$db_password="";      //db password
+$db_password="root";      //db password
 $db_name="playstation"; //db name 
 
 //connect to mysql, if eror will stop the prrogram

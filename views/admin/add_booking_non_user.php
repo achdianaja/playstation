@@ -3,15 +3,16 @@ include '../../connection.php';
 
 $query = "SELECT product_id, product_name, type, status, hourly_price FROM product";
 $product = mysqli_query($db_connection, $query);
-$data = mysqli_fetch_assoc($product);
 
 $page = "Form Booking";
 include '../../components/head.php';
 ?>
 
 <div class="container mt-4">
-    <h1>Form Add Booking</h1>
-    <div class="card">
+        <h1>
+            <a href="../dashboard.php" class="btn btn-outline-info btn-sm mr-3">←</a> Form Add Booking
+        </h1>
+        <div class="card">    
         <div class="card-content">
             <div class="card-body">
                 <form action="../../action/booking/booking.php" method="POST">
@@ -34,13 +35,15 @@ include '../../components/head.php';
 
                     <div class="form-group">
                         <label for="product" class="form-label">Pilih Product</label>
-                        <select name="product_id" id="" class="form-control" required>
+                        <select name="product_id" id="product_id" class="form-control" required>
                             <option value="" selected disabled>Pilih Product</option>
-                            <?php foreach ($product as $data) : ?>
-                                <option value="<?= $data['product_id'] ?>" data-price="<?= $data['hourly_price'] ?>" <?= $data['status'] == 'rented' ? 'disabled' : '' ?>>
-                                    <?= $data['product_name'] . " ($data[type])" ?>
+                            <?php while ($data = mysqli_fetch_assoc($product)) : 
+                                $isDisabled = ($data['status'] == 'paid' || $data['status'] == 'booked' || $data['status'] == 'waiting' || $data['status'] == 'rented' ) ? 'disabled' : '';
+                                $style = ($isDisabled) ? 'style="background-color: #ccc; color: gray;"' : ''; ?>
+                                <option value="<?= $data['product_id'] ?>" data-price="<?= $data['hourly_price'] ?>" <?= $isDisabled ?> <?= $style ?>>
+                                    <?= $data['product_name'] . " ($data[type]) - " . ucfirst($data['status']) ?>
                                 </option>
-                            <?php endforeach; ?>
+                            <?php endwhile; ?>
                         </select>
                     </div>
 
@@ -58,6 +61,5 @@ include '../../components/head.php';
         </div>
     </div>
 </div>
-
 
 <?php include '../../components/footer.php'; ?>

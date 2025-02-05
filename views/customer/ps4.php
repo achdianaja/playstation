@@ -6,7 +6,7 @@ include '../../components/head-user.php';
 
 <div class="container mt-5" style="height: 100vh;">
     <h1>
-        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List PS 3
+        <a href="../../index.php" class="btn btn-outline-info btn-sm mr-3">←</a> List PS 4
     </h1>
 
     <div class="card">

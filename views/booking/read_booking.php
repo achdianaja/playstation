@@ -26,7 +26,8 @@ date_default_timezone_set('Asia/Jakarta');
                         <th>Rental Duration</th>
                         <th>Total Price</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>User Type</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
